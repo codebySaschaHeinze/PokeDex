@@ -1,11 +1,16 @@
 .nav_content {
+  display: flex;
+  justify-content: space-between;
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
   padding-left: clamp(5px, 3vw, 40px);
   padding-right: clamp(5px, 3vw, 40px);
+}
+
+.nav_right {
+  margin-top: 20px;
 }
 
 .footer_content {
@@ -28,4 +33,12 @@
 .impressum_data_protection_container {
   padding: 30px;
   background-color: white;
+}
+
+@media (max-width: 400px) {
+  .nav_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
