@@ -2,6 +2,11 @@ h1 {
   text-align: center;
 }
 
+h5 {
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
 .nav_content p {
   color: white;
 }
@@ -23,6 +28,43 @@ h1 {
 nav img {
   height: 40px;
   width: auto;
+}
+
+.pokemon_card p:first-child {
+  margin-top: 5px;
+  margin-left: 5px;
+  align-self: flex-start;
+}
+
+.pokemon_card img {
+  width: 85%;
+  height: auto;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.633));
+  transition: 0.5s;
+  margin-top: 10px;
+}
+
+.pokemon_card:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+}
+
+.load_more_button {
+  margin-bottom: 60px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.load_more_button:hover {
+  transform: scale(1.05);
+}
+
+.pokemon_type {
+  margin-top: 24px;
+  position: relative;
+  bottom: 10px;
 }
 
 @media (max-width: 400px) {

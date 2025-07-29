@@ -28,9 +28,9 @@
   margin-top: 100px;
   margin-bottom: 60px;
   max-width: 1920px;
-  height: 200px;
-  width: 100%;
-  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .impressum_data_protection_container {
@@ -38,12 +38,30 @@
   background-color: white;
 }
 
+.pokemon_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 240px;
+  width: 150px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.264);
+  transition: 0.5s;
+}
+
+.pokemon_card:hover {
+  transform: scale(1.05);
+}
+
 .pokeball_loader {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 .pokeball_loader img {
