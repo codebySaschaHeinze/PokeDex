@@ -80,10 +80,14 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   .nav_content {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .nav_right {
+    margin: 0;
   }
 }

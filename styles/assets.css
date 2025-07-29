@@ -88,9 +88,17 @@ nav img {
   bottom: 10px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   nav img {
     height: 20px;
     width: auto;
+  }
+
+  .nav_right input {
+    height: 22px;
+  }
+
+  .nav_right button {
+    height: 22px;
   }
 }
