@@ -13,7 +13,7 @@ h5 {
 
 .footer_content p,
 .footer_content a {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .impressum_data_protection_container h2 {
@@ -55,10 +55,14 @@ nav img {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.4s;
+  background-color: darkblue;
+  color: aliceblue;
 }
 
 .load_more_button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  background-color: aliceblue;
+  color: darkblue;
 }
 
 .pokemon_type {

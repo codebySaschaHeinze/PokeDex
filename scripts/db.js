@@ -8,7 +8,7 @@ const typeColors = {
   bug: "#aa8121ff",
   ground: "#775300ff",
   poison: "#75c103ff",
-  fighting: "#002c9dff",
+  fighting: "#123eadff",
   rock: "#5e5e5eff",
   fairy: "#f400f4ff",
   ice: "#a7eefaff",

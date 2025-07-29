@@ -49,7 +49,7 @@ function loadingScreen() {
 
 document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
 
-function loadMorePokemon() {
+async function loadMorePokemon() {
   currentOffset += 20;
-  getPokemon(currentOffset);
+  await getPokemon(currentOffset);
 }

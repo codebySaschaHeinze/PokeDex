@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(81, 81, 81);
+  background-color: rgb(164, 224, 254);
   margin: 0;
   display: flex;
   min-height: 100vh;
@@ -27,6 +27,10 @@ a:hover {
 }
 
 nav {
+  background-image: url("../assets/imgs/landscape.png");
+  background-size: cover;
+  background-position: 0 -100px;
+  background-repeat: no-repeat;
   display: flex;
   position: fixed;
   justify-content: space-between;
@@ -37,10 +41,13 @@ nav {
   right: 0;
   height: 60px;
   z-index: 10;
-  background-color: rgb(6, 23, 53);
 }
 
 footer {
+  background-image: url("../assets/imgs/landscape.png");
+  background-size: cover;
+  background-position: 0 -210px;
+  background-repeat: no-repeat;
   display: flex;
   position: fixed;
   width: 100%;
