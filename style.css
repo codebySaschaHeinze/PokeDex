@@ -28,11 +28,37 @@
   margin-top: 100px;
   margin-bottom: 60px;
   max-width: 1920px;
+  height: 200px;
+  width: 100%;
+  color: white;
 }
 
 .impressum_data_protection_container {
   padding: 30px;
   background-color: white;
+}
+
+.pokeball_loader {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokeball_loader img {
+  width: 100%;
+  height: auto;
+  animation: rotatePokeball 1.2s linear infinite;
+}
+
+@keyframes rotatePokeball {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 400px) {
