@@ -19,7 +19,7 @@ function pokemonDetailsTemplate(pokemon) {
               <p>#${pokemon.id}</p>
               <h5>${capitalize(pokemon.name)}</h5>
               <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}" />
-              <p class="pokemon_type">${pokemon.types[0].type.name}</p>
+              <p class="pokemon_type">${capitalize(pokemon.types[0].type.name)}</p>
           </div>
         `;
 }

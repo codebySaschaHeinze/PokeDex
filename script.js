@@ -1,38 +1,24 @@
-const typeColors = {
-  fire: "#ff0000ff",
-  water: "#2092fcff",
-  grass: "#2b8a15ff",
-  electric: "#f8ed1dff",
-  psychic: "#97009fff",
-  normal: "#d75d00ff",
-  bug: "#b47e00ff",
-  ground: "#775300ff",
-  poison: "#8be700ff",
-  fighting: "#002c9dff",
-  rock: "#5e5e5eff",
-  fairy: "#f400f4ff",
-  ice: "#9ff1ffff",
-  dragon: "#3b6300ff",
-  ghost: "#ffffffff",
-  dark: "#4e006fff",
-};
+let currentOffset = 0;
 
 function init() {
-  getPokemons();
+  getPokemon(currentOffset);
 }
 
-async function getPokemons() {
+async function getPokemon(offset) {
   let charsRef = document.getElementById("main-content-container");
   loadingScreen();
 
   try {
-    const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
+    const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=" + offset;
     const response = await fetch(url);
     const chars = await response.json();
     const results = chars.results;
-    charsRef.innerHTML = "";
+    if (offset === 0) {
+      charsRef.innerHTML = "";
+    }
+
     for (let i = 0; i < results.length; i++) {
-      getPokemonDetails(results[i]);
+      await getPokemonDetails(results[i]);
     }
   } catch (error) {
     charsRef.innerHTML = errorTemplate();
@@ -41,11 +27,13 @@ async function getPokemons() {
 
 async function getPokemonDetails(char) {
   try {
-    const details = await fetch(char.url);
-    const data = await details.json();
+    const response = await fetch(char.url);
+    const data = await response.json();
     const charsRef = document.getElementById("main-content-container");
     charsRef.innerHTML += pokemonDetailsTemplate(data);
-  } catch (error) {}
+  } catch (error) {
+    return errorTemplate();
+  }
 }
 
 function capitalize(upperCase) {
@@ -53,6 +41,15 @@ function capitalize(upperCase) {
 }
 
 function loadingScreen() {
-  let spinRef = document.getElementById("main-content-container");
-  spinRef.innerHTML = loadingTemplate();
+  if (currentOffset === 0) {
+    let spinRef = document.getElementById("main-content-container");
+    spinRef.innerHTML = loadingTemplate();
+  }
+}
+
+document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
+
+function loadMorePokemon() {
+  currentOffset += 20;
+  getPokemon(currentOffset);
 }
