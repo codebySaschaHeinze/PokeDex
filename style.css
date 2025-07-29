@@ -3,14 +3,15 @@
   justify-content: space-between;
   max-width: 1920px;
   width: 100%;
-  margin: 0 auto;
   display: flex;
   padding-left: clamp(5px, 3vw, 40px);
   padding-right: clamp(5px, 3vw, 40px);
 }
 
 .nav_right {
+  margin: 0;
   margin-top: 20px;
+  display: flex;
 }
 
 .footer_content {

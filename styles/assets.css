@@ -7,13 +7,30 @@ h5 {
   margin-top: 5px;
 }
 
-.nav_content p {
-  color: white;
-}
-
 .footer_content p,
 .footer_content a {
   color: rgb(0, 0, 0);
+}
+
+.nav_right input {
+  height: 28px;
+  border-radius: 5px 0px 0px 5px;
+  border: 2px solid darkblue;
+  margin: 0;
+}
+
+.nav_right button {
+  height: 28px;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  margin: 0;
+  background-color: darkblue;
+  color: aliceblue;
+}
+
+.nav_right button:hover {
+  background-color: rgb(2, 2, 223);
+  color: aliceblue;
 }
 
 .impressum_data_protection_container h2 {
