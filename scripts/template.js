@@ -30,25 +30,26 @@ function largeCardTemplate(pokemon, index) {
   const color = typeColors[pokemonType];
   return `
             <div class="large_card_content" style="background-color: ${color};">
-            <button class="close_button" onclick="closeLargeCard()"><img src="./assets/icons/close.png" alt="Schließen"></button>
-              <h6>${capitalize(pokemon.name)}</h6>
-              <div id="large-card-image" class="large_card_image"><img src="${
-                pokemon.sprites.other["official-artwork"].front_default
-              }" alt="">
-            </div>
-            <div class="large_card_about_stats_evolution">
-              <p id="tab-content-about" class="tab_button aboutTab" onclick="showAbout(${index})">About</p>
-              <p id="tab-content-stats" class="tab_button statsTab" onclick="showStats(${index})">Stats</p>
-              <p id="tab-content-evolution" class="tab_button evolutionTab" onclick="showEvolution(${index})">Evolution</p>
-            </div>
-            <div class="large_card_tab_content" id="large-card-tab-content">
-            
-            <div>
-            <div class="prev_next_buttons">
-              <button class="prev_button" onclick="prevLargeCard(${index})"><img src="./assets/icons/prev_arrow.png" alt="" /></button>
-              <button class="next_button" onclick="nextLargeCard(${index})"><img src="./assets/icons/next_arrow.png" alt="" /></button>
-            </div>
-            </div>
+  <button class="close_button" onclick="closeLargeCard()"><img src="./assets/icons/close.png" alt="Schließen" /></button>
+  <h6>${capitalize(pokemon.name)}</h6>
+  <div id="large-card-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt=""></div>
+
+  <div class="large_card_about_stats_evolution">
+    <p id="tab-content-about" class="tab_button aboutTab" onclick="showAbout(${index})">About</p>
+    <p id="tab-content-stats" class="tab_button statsTab" onclick="showStats(${index})">Stats</p>
+    <p id="tab-content-evolution" class="tab_button evolutionTab" onclick="showEvolution(${index})">Evolution</p>
+  </div>
+  <div class="about_tab_content" id="about-tab-content">
+  <div class="stats_tab_content" id="stats-tab-content">
+  <div class="evolution_tab_content" id="evolution-tab-content">
+    <div>
+      <div class="prev_next_buttons">
+        <button class="prev_button" onclick="prevLargeCard(${index})"><img src="./assets/icons/prev_arrow.png" alt="" /></button>
+        <button class="next_button" onclick="nextLargeCard(${index})"><img src="./assets/icons/next_arrow.png" alt="" /></button>
+      </div>
+    </div>
+  </div>
+</div>
           `;
 }
 
