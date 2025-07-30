@@ -1,5 +1,6 @@
 let currentStartIndex = 0;
 let allPokemon = [];
+document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
 
 function init() {
   getPokemon(currentStartIndex);
@@ -52,7 +53,7 @@ function showLargeCard(index) {
   const pokemon = allPokemon[index];
   let cardRef = document.getElementById("large-card-container");
   cardRef.classList.remove("d_none");
-  cardRef.innerHTML = largeCardTemplate(pokemon);
+  cardRef.innerHTML = largeCardTemplate(pokemon, index);
 }
 
 function nextLargeCard(index) {
@@ -71,10 +72,38 @@ function prevLargeCard(index) {
   showLargeCard(index);
 }
 
-// function closeLargeCard() {
-//   let cardRef = document.getElementById("large-card-container");
-//   cardRef.classList.add("d_none");
-//   cardRef.innerHTML = "";
-// }
+function closeLargeCard() {
+  let cardRef = document.getElementById("large-card-container");
+  cardRef.classList.add("d_none");
+  cardRef.innerHTML = "";
+}
 
-document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
+function showAbout(index) {
+  const pokemon = allPokemon[index];
+  const aboutRef = document.getElementById("tab-content-about");
+  aboutRef.classList.remove("d_none");
+  document.getElementById("tab-content-stats").classList.add("d_none");
+  document.getElementById("tab-content-evolution").classList.add("d_none");
+  aboutRef.innerHTML = "";
+  aboutRef.innerHTML += aboutTemplate(pokemon);
+}
+
+function showStats(index) {
+  const pokemon = allPokemon[index];
+  const statsRef = document.getElementById("tab-content-stats");
+  statsRef.classList.remove("d_none");
+  document.getElementById("tab-content-about").classList.add("d_none");
+  document.getElementById("tab-content-evolution").classList.add("d_none");
+  statsRef.innerHTML = "";
+  statsRef.innerHTML += statsTemplate(pokemon);
+}
+
+function showEvolution(index) {
+  const pokemon = allPokemon[index];
+  const evolutionRef = document.getElementById("tab-content-evolution");
+  evolutionRef.classList.remove("d_none");
+  document.getElementById("tab-content-about").classList.add("d_none");
+  document.getElementById("tab-content-stats").classList.add("d_none");
+  evolutionRef.innerHTML = "";
+  evolutionRef.innerHTML += evolutionTemplate(pokemon);
+}
