@@ -15,4 +15,5 @@ const typeColors = {
   dragon: "#4f6300ff",
   ghost: "#ffffffff",
   dark: "#4e006fff",
+  steel: "#b3b3b3ff",
 };

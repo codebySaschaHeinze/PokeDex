@@ -23,13 +23,17 @@ function renderPokemonCard(pokemon, index) {
         `;
 }
 
-function largeCardTemplate(pokemon) {
+function largeCardTemplate(pokemon, index) {
+  const pokemonType = pokemon.types[0].type.name;
+  const color = typeColors[pokemonType];
   return `
-            <h6>${capitalize(pokemon.name)}</h6>
-              <p class="large_card_type">${capitalize(pokemon.types[0].type.name)}</p>
-            <div id="large-card-image" class="large_card_image"><img src="${
-              pokemon.sprites.other["official-artwork"].front_default
-            }" alt=""></div>
+            <div class="large_card_content" style="background-color: ${color};">
+              <h6>${capitalize(pokemon.name)}</h6>
+                <p class="large_card_type">${capitalize(pokemon.types[0].type.name)}</p>
+              <div id="large-card-image" class="large_card_image"><img src="${
+                pokemon.sprites.other["official-artwork"].front_default
+              }" alt="">
+            </div>
             <div class="large_card_about_stats_evolution">
               <p>about</p>
               <p>stats</p>
@@ -54,8 +58,9 @@ function largeCardTemplate(pokemon) {
               </tr>
             </table>
             <div class="prev_next_buttons">
-              <button class="prev_button"><img src="./assets/icons/prev_arrow.png" alt="" /></button>
-              <button class="next_button"><img src="./assets/icons/next_arrow.png" alt="" /></button>
+              <button id="prev-button" class="prev_button" onclick="prevLargeCard(${index})"><img src="./assets/icons/prev_arrow.png" alt="" /></button>
+              <button id="next-button" class="next_button" onclick="nextLargeCard(${index})"><img src="./assets/icons/next_arrow.png" alt="" /></button>
+            </div>
             </div>
           `;
 }

@@ -13,9 +13,9 @@ async function getPokemon(startIndex) {
       charsRef.innerHTML = "";
     }
 
-    const limit = 20;
-
-    for (let i = 0; i < limit; i++) {
+    const maxPokemon = 20;
+    let html = "";
+    for (let i = 0; i < maxPokemon; i++) {
       const pokemonId = startIndex + 1 + i;
 
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
@@ -24,9 +24,9 @@ async function getPokemon(startIndex) {
 
       allPokemon.push(pokemon);
       const index = allPokemon.length - 1;
-
-      charsRef.innerHTML += renderPokemonCard(pokemon, index);
+      html += renderPokemonCard(pokemon, index);
     }
+    charsRef.innerHTML += html;
   } catch (error) {
     charsRef.innerHTML = errorTemplate();
   }
@@ -53,6 +53,22 @@ function showLargeCard(index) {
   let cardRef = document.getElementById("large-card-container");
   cardRef.classList.remove("d_none");
   cardRef.innerHTML = largeCardTemplate(pokemon);
+}
+
+function nextLargeCard(index) {
+  index = index + 1;
+  if (index == allPokemon.length) {
+    index = 0;
+  }
+  showLargeCard(index);
+}
+
+function prevLargeCard(index) {
+  index = index - 1;
+  if (index < 0) {
+    index = allPokemon.length - 1;
+  }
+  showLargeCard(index);
 }
 
 // function closeLargeCard() {
