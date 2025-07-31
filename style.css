@@ -110,14 +110,14 @@
   z-index: 13;
   align-items: center;
   border-radius: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 0px;
 }
 
 .large_card_tabs {
   display: flex;
   justify-content: space-around;
   width: 92%;
-  height: 140px;
+  height: 120px;
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: rgba(255, 255, 255, 0.587);
