@@ -3,13 +3,14 @@ let allPokemon = [];
 document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
 
 function init() {
-  loadingScreen();
   getPokemon(currentStartIndex);
 }
 
 async function getPokemon(startIndex) {
+  hideLoadMoreButton();
   let charsRef = document.getElementById("main-content-container");
-  loadingScreen();
+  charsRef.innerHTML = loadingTemplate();
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     if (startIndex === 0) {
       charsRef.innerHTML = "";
@@ -27,6 +28,7 @@ async function getPokemon(startIndex) {
       allPokemon.push(pokemon);
       const index = allPokemon.length - 1;
       html += renderPokemonCard(pokemon, index);
+      showLoadMoreButton();
     }
     charsRef.innerHTML += html;
   } catch (error) {
@@ -101,6 +103,7 @@ function showStats(index) {
 }
 
 function searchPokemon() {
+  hideLoadMoreButton();
   closeLargeCard();
   let searchRef = document.getElementById("search-field").value.toLowerCase();
   let charsRef = document.getElementById("main-content-container");
@@ -135,8 +138,12 @@ function resetPokemonSearchIfWrongInput() {
   getPokemon(currentStartIndex);
 }
 
-function hideLoadMoreButtonWhileSearching() {
-  if (searchPokemon()) document.getElementById("load-more-button").classList.add("d_none");
+function hideLoadMoreButton() {
+  document.getElementById("load-more-button").classList.add("d_none");
+}
+
+function showLoadMoreButton() {
+  document.getElementById("load-more-button").classList.remove("d_none");
 }
 
 function playCrySound(index) {
