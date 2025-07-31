@@ -138,3 +138,10 @@ function resetPokemonSearchIfWrongInput() {
 function hideLoadMoreButtonWhileSearching() {
   if (searchPokemon()) document.getElementById("load-more-button").classList.add("d_none");
 }
+
+function playCrySound(index) {
+  const pokemon = allPokemon[index];
+  const cryUrl = pokemon.cries.latest;
+  const audio = new Audio(cryUrl);
+  audio.play();
+}
