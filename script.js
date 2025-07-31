@@ -3,6 +3,7 @@ let allPokemon = [];
 document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
 
 function init() {
+  loadingScreen();
   getPokemon(currentStartIndex);
 }
 
@@ -54,6 +55,7 @@ function showLargeCard(index) {
   let cardRef = document.getElementById("large-card-container");
   cardRef.classList.remove("d_none");
   cardRef.innerHTML = largeCardTemplate(pokemon, index);
+  showAbout(index);
 }
 
 function nextLargeCard(index) {
@@ -80,30 +82,20 @@ function closeLargeCard() {
 
 function showAbout(index) {
   const pokemon = allPokemon[index];
-  const aboutRef = document.getElementById("large-card-tab-content");
-  document.getElementById("about-tab-content").classList.remove("d_none_two");
-  document.getElementById("stats-tab-content").classList.add("d_none_two");
-  document.getElementById("evolution-tab-content").classList.add("d_none_two");
+  const aboutRef = document.getElementById("about-tab-content");
+  const statsRef = document.getElementById("stats-tab-content");
+  aboutRef.classList.remove("d_none_two");
+  statsRef.classList.add("d_none_two");
   aboutRef.innerHTML = "";
-  aboutRef.innerHTML += aboutTemplate(pokemon);
+  aboutRef.innerHTML = aboutTemplate(pokemon);
 }
 
 function showStats(index) {
   const pokemon = allPokemon[index];
-  const statsRef = document.getElementById("large-card-tab-content");
-  document.getElementById("stats-tab-content").classList.remove("d_none_two");
-  document.getElementById("about-tab-content").classList.add("d_none_two");
-  document.getElementById("evolution-tab-content").classList.add("d_none_two");
+  const aboutRef = document.getElementById("about-tab-content");
+  const statsRef = document.getElementById("stats-tab-content");
+  statsRef.classList.remove("d_none_two");
+  aboutRef.classList.add("d_none_two");
   statsRef.innerHTML = "";
-  statsRef.innerHTML += statsTemplate(pokemon);
-}
-
-function showEvolution(index) {
-  const pokemon = allPokemon[index];
-  const evolutionRef = document.getElementById("large-card-tab-content");
-  document.getElementById("evolution-tab-content").classList.remove("d_none_two");
-  document.getElementById("about-tab-content").classList.add("d_none_two");
-  document.getElementById("stats-tab-content").classList.add("d_none_two");
-  evolutionRef.innerHTML = "";
-  evolutionRef.innerHTML += evolutionTemplate(pokemon);
+  statsRef.innerHTML = statsTemplate(pokemon);
 }

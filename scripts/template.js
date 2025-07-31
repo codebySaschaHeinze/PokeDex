@@ -28,54 +28,58 @@ function renderPokemonCard(pokemon, index) {
 function largeCardTemplate(pokemon, index) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
-  return `
-            <div class="large_card_content" style="background-color: ${color};">
-  <button class="close_button" onclick="closeLargeCard()"><img src="./assets/icons/close.png" alt="Schließen" /></button>
-  <h6>${capitalize(pokemon.name)}</h6>
-  <div id="large-card-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt=""></div>
 
-  <div class="large_card_about_stats_evolution">
-    <p id="tab-content-about" class="tab_button aboutTab" onclick="showAbout(${index})">About</p>
-    <p id="tab-content-stats" class="tab_button statsTab" onclick="showStats(${index})">Stats</p>
-    <p id="tab-content-evolution" class="tab_button evolutionTab" onclick="showEvolution(${index})">Evolution</p>
-  </div>
-  <div class="about_tab_content" id="about-tab-content">
-  <div class="stats_tab_content" id="stats-tab-content">
-  <div class="evolution_tab_content" id="evolution-tab-content">
-    <div>
+  return `
+    <div class="large_card_content" style="background-color: ${color};">
+      <button class="close_button" onclick="closeLargeCard()">
+        <img src="./assets/icons/close.png" alt="Schließen" />
+      </button>
+      <h6>${capitalize(pokemon.name)}</h6>
+      <div id="large-card-image" class="large_card_image">
+        <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="">
+      </div>
+      <div class="tab_header">
+        <p class="tab_button" onclick="showAbout(${index})">About</p>
+        <p class="tab_button" onclick="showStats(${index})">Stats</p>
+      </div>
+      <div class="large_card_tabs">
+        <div class="about_tab_content" id="about-tab-content"></div>
+        <div class="stats_tab_content" id="stats-tab-content"></div>
+      </div>
       <div class="prev_next_buttons">
-        <button class="prev_button" onclick="prevLargeCard(${index})"><img src="./assets/icons/prev_arrow.png" alt="" /></button>
-        <button class="next_button" onclick="nextLargeCard(${index})"><img src="./assets/icons/next_arrow.png" alt="" /></button>
+        <button class="prev_button" onclick="prevLargeCard(${index})">
+          <img src="./assets/icons/prev_arrow.png" alt="" />
+        </button>
+        <button class="next_button" onclick="nextLargeCard(${index})">
+          <img src="./assets/icons/next_arrow.png" alt="" />
+        </button>
       </div>
     </div>
-  </div>
-</div>
-          `;
+  `;
 }
 
 function aboutTemplate(pokemon) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
-  return `<table class="large_card_about_table">
+  return `  
+            <table class="large_card_about_table">
+            <tr>
+                <td>HP</td>
+                <td>${pokemon.stats[0].base_stat}</td>
+              </tr>
               <tr>
-                <td>species</td>
+                <td>Species</td>
                 <td>${capitalize(pokemon.types[0].type.name)}</td>
               </tr>
               <tr>
-                <td>height</td>
+                <td>Height</td>
                 <td>${(pokemon.height / 10).toFixed(1)} m</td>
               </tr>
               <tr>
-                <td>weight</td>
+                <td>Weight</td>
                 <td>${(pokemon.weight / 10).toFixed(1)} kg</td>
-              </tr>
-              <tr>
-                <td>abilities</td>
-                <td>blabla</td>
               </tr>
             </table>`;
 }
 
 function statsTemplate(pokemon, index) {}
-
-function evolutionTemplate(pokemon, index) {}
