@@ -31,7 +31,7 @@ function largeCardTemplate(pokemon, index) {
 
   return `<div>
           <div class="large_card_content" style="background-color: ${color};">
-            <button class="close_button" onclick="closeLargeCard()">
+            <button class="close_button" onclick="closeLargeCardOnX()">
               <img src="./assets/icons/close.png" alt="Schließen" />
             </button>
               <h6>${capitalize(pokemon.name)}</h6>

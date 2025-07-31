@@ -1,22 +1,30 @@
 let currentStartIndex = 0;
 let allPokemon = [];
+
 document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
 
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeLargeCardOnX();
+  }
+});
+
 function init() {
+  loadingTemplate();
   getPokemon(currentStartIndex);
 }
 
 async function getPokemon(startIndex) {
   hideLoadMoreButton();
   let charsRef = document.getElementById("main-content-container");
-  // charsRef.innerHTML = loadingTemplate();
+  loadingTemplate(startIndex);
   await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     if (startIndex === 0) {
       charsRef.innerHTML = "";
     }
 
-    const maxPokemon = 20;
+    const maxPokemon = 40;
     let html = "";
     for (let i = 0; i < maxPokemon; i++) {
       const pokemonId = startIndex + 1 + i;
@@ -41,7 +49,7 @@ function capitalize(upperCase) {
 }
 
 function loadingScreen() {
-  if (currentStartIndex === 0) {
+  if (StartIndex === 0) {
     let spinRef = document.getElementById("main-content-container");
     spinRef.innerHTML = loadingTemplate();
   }
@@ -76,7 +84,7 @@ function prevLargeCard(index) {
   showLargeCard(index);
 }
 
-function closeLargeCard() {
+function closeLargeCardOnX() {
   let cardRef = document.getElementById("large-card-container");
   cardRef.classList.add("d_none");
   cardRef.innerHTML = "";
@@ -104,7 +112,7 @@ function showStats(index) {
 
 function searchPokemon() {
   hideLoadMoreButton();
-  closeLargeCard();
+  closeLargeCardOnX();
   let searchRef = document.getElementById("search-field").value.toLowerCase();
   let charsRef = document.getElementById("main-content-container");
   if (searchRef.length < 3) {
