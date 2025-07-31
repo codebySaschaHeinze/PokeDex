@@ -97,13 +97,15 @@
 .tab_header {
   display: flex;
   justify-content: space-around;
-  width: 280px;
-  margin-top: -30px;
-  border-radius: 8px;
+  width: 250px;
+  margin-top: -16px;
+  margin-bottom: -13px;
+  border-radius: 10px;
   padding: 5px;
 }
 
 .large_card_content {
+  background-color: aliceblue;
   width: 266px;
   display: flex;
   flex-direction: column;
@@ -118,11 +120,31 @@
   justify-content: space-around;
   width: 240px;
   height: 120px;
-  margin-top: 5px;
+  margin-top: 0px;
   margin-bottom: 5px;
-  background-color: rgba(255, 255, 255, 0.587);
-  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.35);
+}
+
+.bottom_part_card {
+  margin-top: -30px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+  padding: 15px 6px 5px 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.large_card_tabs,
+.prev_next_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 7px;
 }
 
 .large_card_about_table {
@@ -140,7 +162,7 @@
   margin-top: 10px;
   padding-right: 10px;
   padding-bottom: 8px;
-  border-radius: 10%;
+  border-radius: 10px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -175,6 +197,15 @@
   font-weight: 600;
   margin: 5px;
   transition: transform 0.2s;
+}
+
+.search_error_message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
 }
 
 @media (max-width: 430px) {

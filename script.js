@@ -109,8 +109,7 @@ function searchPokemon() {
   let searchRef = document.getElementById("search-field").value.toLowerCase();
   let charsRef = document.getElementById("main-content-container");
   if (searchRef.length < 3) {
-    charsRef.innerHTML = `<p>Bitte mindestens 3 Buchstaben eingeben.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Alle anzeigen</button>`;
+    charsRef.innerHTML = searchErrorTemplate();
     return;
   }
   let searchedPokemon = [];
@@ -121,14 +120,14 @@ function searchPokemon() {
     }
   }
   if (searchedPokemon.length === 0) {
-    charsRef.innerHTML = `<p>Kein Pokémon gefunden.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Alle anzeigen</button>`;
+    charsRef.innerHTML = searchNoPokemonFoundTemplate();
     return;
   }
   charsRef.innerHTML = "";
   for (let i = 0; i < searchedPokemon.length; i++) {
     const index = allPokemon.indexOf(searchedPokemon[i]);
     charsRef.innerHTML += renderPokemonCard(searchedPokemon[i], index);
+    // charsRef.innerHTML = searchGetBackToStartTemplate();
   }
 }
 
