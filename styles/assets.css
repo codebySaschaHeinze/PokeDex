@@ -8,7 +8,7 @@ h5 {
 }
 
 h6 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin-left: 10px;
   margin-top: -15px;
 }
@@ -68,7 +68,7 @@ nav img {
 }
 
 .pokemon_card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
   filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
 }
 
@@ -117,36 +117,27 @@ nav img {
   transform: scale(1.1);
 }
 
-.large_card_about_table {
-  width: 250px;
-  height: 100%;
-  /* border-collapse: collapse; */
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-}
-
 .large_card_about_table td {
-  padding: 4px 60px;
   line-height: 1.2;
   vertical-align: middle;
 }
 
 .large_card_about_table td:first-child {
   text-align: left;
-  padding-left: 0;
+  padding-left: 5px;
 }
 
 .large_card_about_table td:last-child {
   text-align: right;
-  padding-right: 0;
+  padding-right: 5px;
 }
 
 .large_card_image img {
-  width: 50%;
+  width: 55%;
   height: auto;
   margin-left: 70px;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.633));
+  z-index: 16;
 }
 
 .prev_next_buttons button {

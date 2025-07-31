@@ -26,7 +26,7 @@
 }
 
 .main_content_container {
-  margin-top: 100px;
+  margin-top: 80px;
   margin-bottom: 60px;
   max-width: 1920px;
   display: flex;
@@ -45,7 +45,7 @@
   align-items: center;
   height: 240px;
   width: 150px;
-  margin: 10px;
+  margin: 15px 25px;
   border-radius: 10px;
   box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
@@ -82,7 +82,7 @@
 
 .large_card_container {
   position: fixed;
-  width: 290px;
+  width: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,21 +90,21 @@
   z-index: 12;
   margin-top: 75px;
   border-radius: 10px;
-  border: 1.5px solid black;
+  border: 2px solid rgba(0, 0, 0, 0.644);
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.55);
 }
 
 .tab_header {
   display: flex;
   justify-content: space-around;
-  width: 92%;
+  width: 280px;
   margin-top: -30px;
   border-radius: 8px;
   padding: 5px;
 }
 
 .large_card_content {
-  width: 100%;
+  width: 266px;
   display: flex;
   flex-direction: column;
   z-index: 13;
@@ -116,12 +116,21 @@
 .large_card_tabs {
   display: flex;
   justify-content: space-around;
-  width: 250px;
+  width: 240px;
   height: 120px;
   margin-top: 5px;
   margin-bottom: 5px;
   background-color: rgba(255, 255, 255, 0.587);
   border-radius: 8px;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.35);
+}
+
+.large_card_about_table {
+  width: 240px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
 }
 
 .little_type_container {

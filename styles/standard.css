@@ -5,13 +5,17 @@
 }
 
 body {
+  background-image: url("../assets/imgs/landscape.png");
+  background-size: cover;
+  background-position: 0 0px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-color: rgb(123, 207, 249);
   margin: 0;
   display: flex;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   padding-bottom: 60px;
   font-family: "ubuntu", sans-serif;
@@ -27,10 +31,7 @@ a:hover {
 }
 
 nav {
-  background-image: url("../assets/imgs/landscape.png");
-  background-size: cover;
-  background-position: 0 -100px;
-  background-repeat: no-repeat;
+  background-color: rgb(123, 207, 249);
   display: flex;
   position: fixed;
   justify-content: space-between;
@@ -44,10 +45,7 @@ nav {
 }
 
 footer {
-  background-image: url("../assets/imgs/landscape.png");
-  background-size: cover;
-  background-position: 0 -210px;
-  background-repeat: no-repeat;
+  background-color: rgb(123, 207, 249);
   display: flex;
   position: fixed;
   width: 100%;
@@ -56,7 +54,6 @@ footer {
   right: 0;
   height: 60px;
   z-index: 10;
-  background-color: rgb(6, 23, 53);
 }
 
 .footer_links {
