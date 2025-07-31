@@ -1,15 +1,8 @@
 let currentStartIndex = 0;
 let allPokemon = [];
 
-document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
-
-document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    closeLargeCardOnX();
-  }
-});
-
 function init() {
+  addEventListeners();
   loadingTemplate();
   getPokemon(currentStartIndex);
 }
@@ -159,4 +152,14 @@ function playCrySound(index) {
   const cryUrl = pokemon.cries.latest;
   const audio = new Audio(cryUrl);
   audio.play();
+}
+
+function addEventListeners() {
+  document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeLargeCardOnX();
+    }
+  });
 }

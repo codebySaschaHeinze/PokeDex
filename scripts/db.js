@@ -1,5 +1,5 @@
 const typeColors = {
-  fire: "#ce0404ff",
+  fire: "#b50303ff",
   water: "#197ad4ff",
   grass: "#216b10ff",
   electric: "#d6cd19ff",
