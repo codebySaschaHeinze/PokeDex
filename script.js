@@ -131,5 +131,10 @@ function searchPokemon() {
 function resetPokemonSearchIfWrongInput() {
   document.getElementById("search-field").value = "";
   currentStartIndex = 0;
+  allPokemon = [];
   getPokemon(currentStartIndex);
+}
+
+function hideLoadMoreButtonWhileSearching() {
+  if (searchPokemon()) document.getElementById("load-more-button").classList.add("d_none");
 }
