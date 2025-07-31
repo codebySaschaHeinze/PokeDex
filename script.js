@@ -9,7 +9,7 @@ function init() {
 async function getPokemon(startIndex) {
   hideLoadMoreButton();
   let charsRef = document.getElementById("main-content-container");
-  charsRef.innerHTML = loadingTemplate();
+  // charsRef.innerHTML = loadingTemplate();
   await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     if (startIndex === 0) {
