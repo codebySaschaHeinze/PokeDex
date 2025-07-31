@@ -82,11 +82,11 @@
 
 .large_card_container {
   position: fixed;
-  width: 270px;
+  width: 290px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0);
   z-index: 12;
   margin-top: 75px;
   border-radius: 10px;

@@ -118,9 +118,9 @@ nav img {
 }
 
 .large_card_about_table {
-  width: 100%;
+  width: 250px;
   height: 100%;
-  border-collapse: collapse;
+  /* border-collapse: collapse; */
   margin: 0;
   padding: 0;
   font-size: 1rem;
@@ -146,6 +146,7 @@ nav img {
   width: 50%;
   height: auto;
   margin-left: 70px;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.633));
 }
 
 .prev_next_buttons button {
@@ -164,8 +165,9 @@ nav img {
   transform: scale(1.1);
 }
 
-.sound_button {
-  height: 80%;
+.sound_button img {
+  height: 20px;
+  margin-top: 3px;
 }
 
 .close_button img {
@@ -184,10 +186,11 @@ nav img {
   }
 
   .nav_right input {
-    height: 22px;
+    height: 20px;
+    width: 80px;
   }
 
   .nav_right button {
-    height: 22px;
+    height: 20px;
   }
 }
