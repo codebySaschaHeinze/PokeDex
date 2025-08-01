@@ -121,6 +121,10 @@ nav img {
   color: black;
 }
 
+td:first-child {
+  font-weight: 600;
+}
+
 .large_card_about_table td {
   line-height: 1.2;
   vertical-align: middle;
