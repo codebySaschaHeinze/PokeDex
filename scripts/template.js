@@ -7,7 +7,7 @@ function loadingTemplate() {
 
 function errorTemplate() {
   return `
-          <p>Seite konnte nicht geladen werden</p>`;
+          <p>Page could not be loaded</p>`;
 }
 
 function renderPokemonCard(pokemon, index) {
@@ -158,16 +158,16 @@ function statsTemplate(pokemon, baseStat) {
 function searchErrorTemplate() {
   return `
   <div class="search_error_message">
-  <p>Bitte mindestens 3 Buchstaben eingeben.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
+  <p>Please enter at least 3 letters.</p>
+    <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
   </div>`;
 }
 
 function searchNoPokemonFoundTemplate() {
   return `
   <div class="search_error_message">
-  <p>Kein passendes Pokemon gefunden.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
+  <p>No matching Pokemon found.</p>
+    <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
   </div>`;
 }
 
