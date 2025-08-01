@@ -18,6 +18,10 @@ h6 {
   color: rgb(0, 0, 0);
 }
 
+footer a:hover {
+  text-decoration: underline;
+}
+
 .nav_right input {
   height: 28px;
   border-radius: 5px 0px 0px 5px;
@@ -50,6 +54,8 @@ h6 {
 nav img {
   height: 45px;
   width: auto;
+  text-decoration: none;
+  background: none;
 }
 
 .pokemon_card p:first-child {
