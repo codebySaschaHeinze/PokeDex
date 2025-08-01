@@ -164,16 +164,6 @@ function highlightAboutTab() {
   document.getElementById("stats-tab").className = "tab_button";
 }
 
-// function highlightStatsTab() {
-//   document.getElementById("stats-tab").className = "tab_button active_tab";
-//   document.getElementById("about-tab").className = "tab_button";
-// }
-
-// function highlightAboutTab() {
-//   document.getElementById("about-tab").classList.add("active_tab");
-//   document.getElementById("stats-tab").classList.remove("active_tab");
-// }
-
 function highlightStatsTab() {
   document.getElementById("stats-tab").classList.add("active_tab");
   document.getElementById("about-tab").classList.remove("active_tab");
