@@ -89,28 +89,22 @@ function showAbout(index) {
   const statsRef = document.getElementById("stats-tab-content");
   aboutRef.classList.remove("d_none_two");
   statsRef.classList.add("d_none_two");
-  aboutRef.innerHTML = "";
   aboutRef.innerHTML = aboutTemplate(pokemon);
 }
 
-function getStats(index) {
-  const pokemon = allPokemon[index];
-  const statRef = document.getElementById("stats-tab-content");
-  statRef.innerHTML = "";
-  for (let statsIndex = 0; statsIndex < pokemon.stats.length; statsIndex++) {
-    let statName = pokemon.stats[statsIndex].stat.name;
-    let statValue = pokemon.stats[statsIndex].base_stat;
-    statRef.innerHTML += statsTemplate(statName, statValue);
-  }
-}
+// function getStats(index) {
+//   const pokemon = allPokemon[index];
+//   const statRef = document.getElementById("stats-tab-content");
+//   statRef.innerHTML = "";
+//   statRef.innerHTML += statsTemplate(pokemon);
+// }
 
 function showStats(index) {
   const pokemon = allPokemon[index];
   const aboutRef = document.getElementById("about-tab-content");
   const statsRef = document.getElementById("stats-tab-content");
-  statsRef.classList.add("d_none_two");
-  aboutRef.classList.remove("d_none_two");
-  statsRef.innerHTML = "";
+  aboutRef.classList.add("d_none_two");
+  statsRef.classList.remove("d_none_two");
   statsRef.innerHTML = statsTemplate(pokemon);
 }
 

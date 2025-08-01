@@ -90,27 +90,27 @@ function aboutTemplate(pokemon) {
             </table>`;
 }
 
-function statsTemplate(pokemon, index, statsIndex) {
+function statsTemplate(pokemon) {
   return `<table class="large_card_stats_table">
             <tr>
                 <td>Attack</td>
-                <td></td>
+                <td>${pokemon.stats[1].base_stat}</td>
               </tr>
               <tr>
                 <td>Defense</td>
-                <td></td>
+                <td>${pokemon.stats[2].base_stat}</td>
               </tr>
               <tr>
                 <td>Special-Attack</td>
-                <td></td>
+                <td>${pokemon.stats[3].base_stat}</td>
               </tr>
               <tr>
                 <td>Special-Defense</td>
-                <td></td>
+                <td>${pokemon.stats[4].base_stat}</td>
               </tr>
                <tr>
                 <td>Speed</td>
-                <td></td>
+                <td>${pokemon.stats[5].base_stat}</td>
               </tr>
             </table>`;
 }
