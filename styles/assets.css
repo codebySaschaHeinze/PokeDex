@@ -80,6 +80,7 @@ nav img {
   transition: 0.4s;
   background-color: darkblue;
   color: aliceblue;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.441);
 }
 
 .load_more_button:hover {
@@ -196,6 +197,7 @@ nav img {
   transition: 0.4s;
   background-color: darkblue;
   color: aliceblue;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.441);
 }
 
 .search_error_message button:hover {
