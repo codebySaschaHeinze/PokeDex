@@ -10,7 +10,7 @@ function init() {
 async function getPokemon(startIndex) {
   hideLoadMoreButton();
   let charsRef = document.getElementById("main-content-container");
-  loadingTemplate(startIndex);
+  loadingScreen(startIndex);
   await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     if (startIndex === 0) {
@@ -41,8 +41,8 @@ function capitalize(upperCase) {
   return upperCase.charAt(0).toUpperCase() + upperCase.slice(1);
 }
 
-function loadingScreen() {
-  if (StartIndex === 0) {
+function loadingScreen(startIndex) {
+  if (startIndex === 0) {
     let spinRef = document.getElementById("main-content-container");
     spinRef.innerHTML = loadingTemplate();
   }
