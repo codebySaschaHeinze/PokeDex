@@ -92,13 +92,6 @@ function showAbout(index) {
   aboutRef.innerHTML = aboutTemplate(pokemon);
 }
 
-// function getStats(index) {
-//   const pokemon = allPokemon[index];
-//   const statRef = document.getElementById("stats-tab-content");
-//   statRef.innerHTML = "";
-//   statRef.innerHTML += statsTemplate(pokemon);
-// }
-
 function showStats(index) {
   const pokemon = allPokemon[index];
   const aboutRef = document.getElementById("about-tab-content");
@@ -106,6 +99,12 @@ function showStats(index) {
   aboutRef.classList.add("d_none_two");
   statsRef.classList.remove("d_none_two");
   statsRef.innerHTML = statsTemplate(pokemon);
+}
+
+function calculateBaseStats(baseStat) {
+  let maxStat = 150;
+  let percent = (baseStat / maxStat) * 100;
+  return percent;
 }
 
 function searchPokemon() {

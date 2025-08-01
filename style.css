@@ -1,9 +1,10 @@
 .nav_content {
-  display: flex;
-  justify-content: space-between;
   max-width: 1920px;
   width: 100%;
+  margin: 0 auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-left: clamp(5px, 3vw, 40px);
   padding-right: clamp(5px, 3vw, 40px);
 }
@@ -45,7 +46,7 @@
   align-items: center;
   height: 240px;
   width: 150px;
-  margin: 15px 25px;
+  margin: 15px 20px;
   border-radius: 10px;
   box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
@@ -82,13 +83,15 @@
 
 .large_card_container {
   position: fixed;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 270px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0);
   z-index: 12;
-  margin-top: 75px;
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.644);
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.55);
@@ -102,6 +105,7 @@
   margin-bottom: -13px;
   border-radius: 10px;
   padding: 5px;
+  z-index: 15;
 }
 
 .large_card_content {
@@ -119,12 +123,12 @@
   display: flex;
   justify-content: space-around;
   width: 240px;
-  height: 120px;
+  height: 145px;
   margin-top: 0px;
   margin-bottom: 5px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.35);
+  padding-bottom: 5px;
 }
 
 .bottom_part_card {
@@ -132,8 +136,7 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 10px;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
-  padding: 15px 6px 5px 6px;
+  padding: 35px 6px 5px 6px;
   display: flex;
   flex-direction: column;
 }
@@ -142,9 +145,8 @@
 .prev_next_buttons {
   display: flex;
   justify-content: center;
-  gap: 12px;
   width: 100%;
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 .large_card_about_table {
@@ -152,7 +154,31 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+
+.large_card_stats_table {
+  width: 240px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.stats_progress_bar_container {
+  position: absolute;
+  height: 2px;
+  width: 200px;
+  border-radius: 2px;
+  background-color: rgb(185, 185, 185);
+}
+
+.stats_progress_bar {
+  position: absolute;
+  height: 2px;
+  width: 200px;
+  border-radius: 2px;
+  background-color: rgb(255, 0, 0);
 }
 
 .little_type_container {
