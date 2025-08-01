@@ -35,7 +35,7 @@ async function getPokemon(startIndex) {
     if (startIndex === 0) {
       container.innerHTML = "";
     }
-    const maxPokemon = 20;
+    const maxPokemon = 40;
     let html = "";
     for (let i = 0; i < maxPokemon; i++) {
       const pokemonId = startIndex + 1 + i;
@@ -80,7 +80,7 @@ function loadingScreen(startIndex) {
  * @returns {Promise<void>} A promise that resolves when the next batch is fetched.
  */
 async function loadMorePokemon() {
-  currentStartIndex += 20;
+  currentStartIndex += 40;
   await getPokemon(currentStartIndex);
 }
 

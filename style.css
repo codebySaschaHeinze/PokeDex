@@ -111,7 +111,12 @@
 }
 
 .large_card_content {
-  background-color: aliceblue;
+  background-image: url("../assets/imgs/card_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-color: rgb(254, 255, 217); */
   width: 266px;
   display: flex;
   flex-direction: column;

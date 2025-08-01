@@ -114,7 +114,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[2].base_stat)}%">
                  </div>
                  </div>
                 </td>
@@ -126,7 +126,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[3].base_stat)}%">
                  </div>
                  </div>
                 </td>
@@ -138,7 +138,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[4].base_stat)}%">
                  </div>
                  </div>
                 </td>
@@ -150,7 +150,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[5].base_stat)}%">
                  </div>
                  </div>
                 </td>
