@@ -89,6 +89,7 @@ function showAbout(index) {
   const statsRef = document.getElementById("stats-tab-content");
   aboutRef.classList.remove("d_none_two");
   statsRef.classList.add("d_none_two");
+  highlightAboutTab();
   aboutRef.innerHTML = aboutTemplate(pokemon);
 }
 
@@ -98,6 +99,7 @@ function showStats(index) {
   const statsRef = document.getElementById("stats-tab-content");
   aboutRef.classList.add("d_none_two");
   statsRef.classList.remove("d_none_two");
+  highlightStatsTab();
   statsRef.innerHTML = statsTemplate(pokemon);
 }
 
@@ -156,6 +158,28 @@ function playCrySound(index) {
   const audio = new Audio(cryUrl);
   audio.play();
 }
+
+function highlightAboutTab() {
+  document.getElementById("about-tab").className = "tab_button active_tab";
+  document.getElementById("stats-tab").className = "tab_button";
+}
+
+// function highlightStatsTab() {
+//   document.getElementById("stats-tab").className = "tab_button active_tab";
+//   document.getElementById("about-tab").className = "tab_button";
+// }
+
+// function highlightAboutTab() {
+//   document.getElementById("about-tab").classList.add("active_tab");
+//   document.getElementById("stats-tab").classList.remove("active_tab");
+// }
+
+function highlightStatsTab() {
+  document.getElementById("stats-tab").classList.add("active_tab");
+  document.getElementById("about-tab").classList.remove("active_tab");
+}
+
+function highlightStatTab() {}
 
 function addEventListeners() {
   document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);

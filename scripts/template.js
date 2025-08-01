@@ -41,8 +41,8 @@ function largeCardTemplate(pokemon, index) {
     <div class="bottom_part_card" style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1));
          box-shadow: 0 -10px 20px -10px ${color}";>
     <div class="tab_header">
-      <p class="tab_button" onclick="showAbout(${index})">About</p>
-      <p class="tab_button" onclick="showStats(${index})">Stats</p>
+      <p id="about-tab" class="tab_button" onclick="showAbout(${index})">About</p>
+      <p id="stats-tab" class="tab_button" onclick="showStats(${index})">Stats</p>
     </div>
     
       <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
@@ -90,27 +90,67 @@ function aboutTemplate(pokemon) {
             </table>`;
 }
 
-function statsTemplate(pokemon) {
+function statsTemplate(pokemon, baseStat) {
   return `<table class="large_card_stats_table">
             <tr>
                 <td>Attack</td>
                 <td>${pokemon.stats[1].base_stat}</td>
               </tr>
               <tr>
+                <td colspan="2">
+                 <div class="stats_progress_bar_container">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 </div>
+                 </div>
+                </td>
+              </tr>
+              <tr>
                 <td>Defense</td>
                 <td>${pokemon.stats[2].base_stat}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                 <div class="stats_progress_bar_container">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 </div>
+                 </div>
+                </td>
               </tr>
               <tr>
                 <td>Special-Attack</td>
                 <td>${pokemon.stats[3].base_stat}</td>
               </tr>
               <tr>
+                <td colspan="2">
+                 <div class="stats_progress_bar_container">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 </div>
+                 </div>
+                </td>
+              </tr>
+              <tr>
                 <td>Special-Defense</td>
                 <td>${pokemon.stats[4].base_stat}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                 <div class="stats_progress_bar_container">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 </div>
+                 </div>
+                </td>
               </tr>
                <tr>
                 <td>Speed</td>
                 <td>${pokemon.stats[5].base_stat}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                 <div class="stats_progress_bar_container">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}%">
+                 </div>
+                 </div>
+                </td>
               </tr>
             </table>`;
 }
@@ -136,4 +176,8 @@ function searchGetBackToStartTemplate() {
   <div class="search_error_message">
     <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
   </div>`;
+}
+
+function percentage(percent, total) {
+  return ((percent / 100) * total).toFixed(2);
 }
