@@ -133,8 +133,8 @@ function searchPokemon() {
   for (let i = 0; i < searchedPokemon.length; i++) {
     const index = allPokemon.indexOf(searchedPokemon[i]);
     charsRef.innerHTML += renderPokemonCard(searchedPokemon[i], index);
-    // charsRef.innerHTML = searchGetBackToStartTemplate();
   }
+  charsRef.innerHTML += searchGetBackToStartTemplate();
 }
 
 function resetPokemonSearchIfWrongInput() {

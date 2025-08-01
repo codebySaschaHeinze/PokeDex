@@ -29,48 +29,50 @@ function largeCardTemplate(pokemon, index) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
 
-  return `<div>
-  <div class="large_card_content">
-    <button class="close_button" onclick="closeLargeCardOnX()">
-      <img src="./assets/icons/close.png" alt="Schließen" />
-    </button>
-    <h6>${capitalize(pokemon.name)}</h6>
-    <div id="large-card-image" class="large_card_image">
-      <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="">
-    </div>
-    <div class="bottom_part_card" style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1));
-         box-shadow: 0 -10px 20px -10px ${color}";>
-    <div class="tab_header">
-      <p id="about-tab" class="tab_button" onclick="showAbout(${index})">About</p>
-      <p id="stats-tab" class="tab_button" onclick="showStats(${index})">Stats</p>
-    </div>
-    
-      <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
-        <div class="about_tab_content" id="about-tab-content"></div>
-        <div class="stats_tab_content" id="stats-tab-content"></div>
-      </div>
-      <div class="prev_next_buttons">
-        <button class="prev_button" onclick="prevLargeCard(${index})">
-          <img src="./assets/icons/prev_arrow.png" alt="Next large Card" />
-        </button>
-        <button class="sound_button" onclick="playCrySound(${index})">
-          <img src="./assets/icons/sound.png" alt="Pokemon sound" />
-        </button>
-        <button class="next_button" onclick="nextLargeCard(${index})">
-          <img src="./assets/icons/next_arrow.png" alt="Previous large Card" />
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-  `;
+  return `
+          <div class="large_card_content">
+            <button class="close_button" onclick="closeLargeCardOnX()">
+              <img src="./assets/icons/close.png" alt="Schließen" />
+            </button>
+            <h6>${capitalize(pokemon.name)}</h6>
+            <div id="large-card-image" class="large_card_image"><img src="${
+              pokemon.sprites.other["official-artwork"].front_default
+            }" alt="">
+            </div>
+            <div
+              class="bottom_part_card"
+              style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1));box-shadow: 0 -10px 20px -10px ${color}"
+              ;
+            >
+              <div class="tab_header">
+                <p id="about-tab" class="tab_button" onclick="showAbout(${index})">About</p>
+                <p id="stats-tab" class="tab_button" onclick="showStats(${index})">Stats</p>
+              </div>
+              <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
+                <div class="about_tab_content" id="about-tab-content"></div>
+                <div class="stats_tab_content" id="stats-tab-content"></div>
+              </div>
+              <div class="prev_next_buttons">
+                <button class="prev_button" onclick="prevLargeCard(${index})">
+                  <img src="./assets/icons/prev_arrow.png" alt="Next large Card" />
+                </button>
+                <button class="sound_button" onclick="playCrySound(${index})">
+                  <img src="./assets/icons/sound.png" alt="Pokemon sound" />
+                </button>
+                <button class="next_button" onclick="nextLargeCard(${index})">
+                  <img src="./assets/icons/next_arrow.png" alt="Previous large Card" />
+                </button>
+              </div>
+            </div>
+          </div>
+          `;
 }
 
 function aboutTemplate(pokemon) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
   return `  
-            <table class="large_card_about_table">
+          <table class="large_card_about_table">
             <tr>
                 <td>HP</td>
                 <td>${pokemon.stats[0].base_stat}</td>
@@ -90,8 +92,9 @@ function aboutTemplate(pokemon) {
             </table>`;
 }
 
-function statsTemplate(pokemon, baseStat) {
-  return `<table class="large_card_stats_table">
+function statsTemplate(pokemon) {
+  return `
+          <table class="large_card_stats_table">
             <tr>
                 <td>Attack</td>
                 <td>${pokemon.stats[1].base_stat}</td>
@@ -157,27 +160,23 @@ function statsTemplate(pokemon, baseStat) {
 
 function searchErrorTemplate() {
   return `
-  <div class="search_error_message">
-  <p>Please enter at least 3 letters.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
-  </div>`;
+          <div class="search_error_message">
+            <p>Please enter at least 3 letters.</p>
+            <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
+          </div>`;
 }
 
 function searchNoPokemonFoundTemplate() {
   return `
-  <div class="search_error_message">
-  <p>No matching Pokemon found.</p>
-    <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
-  </div>`;
+          <div class="search_error_message">
+            <p>No matching Pokemon found.</p>
+            <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
+            </div>`;
 }
 
 function searchGetBackToStartTemplate() {
   return `
-  <div class="search_error_message">
-    <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
-  </div>`;
-}
-
-function percentage(percent, total) {
-  return ((percent / 100) * total).toFixed(2);
+          <div class="search_error_message">
+            <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
+          </div>`;
 }
