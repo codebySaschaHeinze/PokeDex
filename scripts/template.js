@@ -38,13 +38,14 @@ function largeCardTemplate(pokemon, index) {
     <div id="large-card-image" class="large_card_image">
       <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="">
     </div>
-    <div class="bottom_part_card" style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1));">
+    <div class="bottom_part_card" style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1));
+         box-shadow: 0 -10px 20px -10px ${color}";>
     <div class="tab_header">
       <p class="tab_button" onclick="showAbout(${index})">About</p>
       <p class="tab_button" onclick="showStats(${index})">Stats</p>
     </div>
     
-      <div class="large_card_tabs">
+      <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
         <div class="about_tab_content" id="about-tab-content"></div>
         <div class="stats_tab_content" id="stats-tab-content"></div>
       </div>
@@ -80,16 +81,39 @@ function aboutTemplate(pokemon) {
               </tr>
               <tr>
                 <td>Height</td>
-                <td>${(pokemon.height / 10).toFixed(1)} m</td>
+                <td>${(pokemon.height / 10).toFixed(1).replace(".", ",")} m</td>
               </tr>
               <tr>
                 <td>Weight</td>
-                <td>${(pokemon.weight / 10).toFixed(1)} kg</td>
+                <td>${(pokemon.weight / 10).toFixed(1).replace(".", ",")} kg</td>
               </tr>
             </table>`;
 }
 
-function statsTemplate(pokemon, index) {}
+function statsTemplate(pokemon, index, statsIndex) {
+  return `<table class="large_card_stats_table">
+            <tr>
+                <td>Attack</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Defense</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Special-Attack</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Special-Defense</td>
+                <td></td>
+              </tr>
+               <tr>
+                <td>Speed</td>
+                <td></td>
+              </tr>
+            </table>`;
+}
 
 function searchErrorTemplate() {
   return `
