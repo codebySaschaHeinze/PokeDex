@@ -176,7 +176,6 @@
 .stats_progress_bar {
   position: absolute;
   height: 2px;
-  width: 200px;
   border-radius: 2px;
   background-color: rgb(255, 0, 0);
 }
@@ -216,13 +215,6 @@
   cursor: pointer;
   margin-left: 220px;
   margin-top: 8px;
-}
-
-.tab_button {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 5px;
-  transition: transform 0.2s;
 }
 
 .search_error_message {
