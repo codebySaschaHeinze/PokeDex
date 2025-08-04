@@ -232,12 +232,16 @@
 }
 
 .start_overlay {
+  background-image: url("../assets/imgs/start-img.png");
+  background-size: cover;
+  background-position: 0px -80px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 280px;
   height: 200px;
-  background-color: rgba(218, 218, 218, 0.589);
   position: fixed;
   top: 51%;
   left: 50%;
@@ -247,12 +251,16 @@
 }
 
 .wrong_answer_container {
+  background-image: url("../assets/imgs/pikachu1.png");
+  background-size: cover;
+  background-position: 0px -80px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 280px;
   height: 200px;
-  background-color: rgb(218, 218, 218);
   position: fixed;
   top: 51%;
   left: 50%;

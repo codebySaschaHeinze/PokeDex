@@ -223,8 +223,11 @@ td:first-child {
 .start_overlay p {
   width: 90%;
   text-align: center;
-  margin-top: 35px;
+  margin-top: 10px;
   margin-left: 13px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 7px 5px rgb(0, 0, 0);
+  font-size: 1.2rem;
 }
 
 .start_overlay_colors a {
@@ -238,7 +241,8 @@ td:first-child {
   border-radius: 4px;
   text-align: center;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.241);
 }
 
 .start_overlay_colors a:first-child {
@@ -256,11 +260,14 @@ td:first-child {
 .wrong_answer_container p {
   width: 90%;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 10px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 7px 5px rgb(0, 0, 0);
+  font-size: 1.2rem;
 }
 
 .wrong_answer_container button {
-  margin: 40px;
+  margin-top: 80px;
   width: 100px;
   height: 22px;
   border-radius: 8px;
