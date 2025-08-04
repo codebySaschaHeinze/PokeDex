@@ -1,7 +1,3 @@
-/**
- * Current starting index for fetching Pokémon.
- * @type {number}
- */
 let currentStartIndex = 0;
 
 /**
