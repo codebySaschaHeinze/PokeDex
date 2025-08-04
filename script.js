@@ -15,13 +15,23 @@ function init() {
   getPokemon(currentStartIndex);
 }
 
+/**
+ * Renders the initial start-question overlay into the DOM.
+ * This is called on page load to ask the user the Pikachu-color quiz.
+ */
 function showStartQuestion() {
-  let overlayRef = document.getElementById("start-overlay");
+  const overlayRef = document.getElementById("start-overlay");
   overlayRef.innerHTML = startTemplate();
 }
 
-function checkAnswer(selectetdColor) {
-  if (selectetdColor === "yellow") {
+/**
+ * Checks the user's answer to the start question.
+ * If correct, hides the overlay and starts the app; otherwise shows an alert.
+ *
+ * @param {string} selectedColor – The color the user clicked (e.g. "yellow", "green", "blue").
+ */
+function checkAnswer(selectedColor) {
+  if (selectedColor === "yellow") {
     document.getElementById("start-overlay").classList.add("d_none_three");
     init();
   } else {
