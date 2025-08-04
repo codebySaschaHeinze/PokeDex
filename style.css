@@ -254,6 +254,14 @@
   margin-top: 20px;
 }
 
+.loading_spinner_container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 1000;
+}
+
 @media (max-width: 430px) {
   .nav_content {
     display: flex;
