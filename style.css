@@ -266,7 +266,7 @@
   flex-direction: row;
   justify-content: space-around;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .loading_spinner_container {
@@ -293,5 +293,9 @@
 }
 
 .d_none_two {
+  display: none;
+}
+
+.d_none_three {
   display: none;
 }
