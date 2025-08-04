@@ -320,4 +320,10 @@ function addEventListeners() {
       searchPokemon();
     }
   });
+  document.getElementById("search-field").addEventListener("input", () => {
+    const value = document.getElementById("search-field").value.trim();
+    if (value === "") {
+      resetPokemonSearchIfWrongInput();
+    }
+  });
 }
