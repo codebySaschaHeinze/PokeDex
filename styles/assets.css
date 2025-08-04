@@ -220,6 +220,43 @@ td:first-child {
   font-size: 1.3rem;
 }
 
+.start_overlay p {
+  width: 90%;
+  text-align: center;
+  margin-top: 25px;
+  margin-left: 13px;
+}
+
+.start_overlay_colors a {
+  margin: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  width: 100%;
+  height: 20px;
+  background-color: #197ad4ff;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.start_overlay_colors a:first-child {
+  background-color: #216b10ff;
+}
+
+.start_overlay_colors a:last-child {
+  background-color: #d6cd19ff;
+}
+
+.start_overlay_colors a:hover {
+  transform: scale(1.05);
+}
+
+.d_none_three {
+  display: none;
+}
+
 @media (max-width: 430px) {
   nav img {
     height: 28px;

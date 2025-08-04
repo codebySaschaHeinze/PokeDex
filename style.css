@@ -231,6 +231,29 @@
   gap: 20px;
 }
 
+.start_overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  height: 200px;
+  background-color: rgba(218, 218, 218, 0.589);
+  position: fixed;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: 1.5px solid black;
+}
+
+.start_overlay_colors {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 @media (max-width: 430px) {
   .nav_content {
     display: flex;
