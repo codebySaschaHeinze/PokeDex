@@ -30,7 +30,7 @@ async function getPokemon(startIndex) {
   hideLoadMoreButton();
   loadingScreen(startIndex);
   const container = document.getElementById("main-content-container");
-  await new Promise((resolve) => setTimeout(resolve, 100));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     if (startIndex === 0) {
       container.innerHTML = "";
