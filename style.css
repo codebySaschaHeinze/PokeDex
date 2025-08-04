@@ -232,15 +232,15 @@
 }
 
 .start_overlay {
-  background-image: url("../assets/imgs/start-img.png");
+  background-image: url("./assets/imgs/landscape2.png");
   background-size: cover;
-  background-position: 0px -80px;
+  background-position: 0px -60px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
+  width: 260px;
   height: 200px;
   position: fixed;
   top: 51%;
@@ -251,15 +251,15 @@
 }
 
 .wrong_answer_container {
-  background-image: url("../assets/imgs/pikachu1.png");
+  background-image: url("./assets/imgs/pikachu1.png");
   background-size: cover;
-  background-position: 0px -80px;
+  background-position: 0px -60px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
+  width: 260px;
   height: 200px;
   position: fixed;
   top: 51%;
