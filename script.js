@@ -25,8 +25,24 @@ function showStartQuestion() {
 }
 
 /**
+ * Reveals the "wrong answer" message container by removing its hidden CSS class.
+ */
+function showThatAnswerIsWrong() {
+  const wrongOverlay = document.getElementById("wrong-answer-container");
+  document.getElementById("wrong-answer-container").classList.remove("d_none_three");
+  wrongOverlay.innerHTML = wrongAnswerTemplate();
+}
+
+/**
+ * Hides the "wrong answer" message container by re-applying its hidden CSS class.
+ */
+function backToStartQuestion() {
+  document.getElementById("wrong-answer-container").classList.add("d_none_three");
+}
+
+/**
  * Checks the user's answer to the start question.
- * If correct, hides the overlay and starts the app; otherwise shows an alert.
+ * If correct, hides the overlay and starts the app.
  *
  * @param {string} selectedColor – The color the user clicked (e.g. "yellow", "green", "blue").
  */
@@ -35,8 +51,6 @@ function checkAnswer(selectedColor) {
     document.getElementById("start-overlay").classList.add("d_none_three");
     document.getElementById("nav-right").classList.remove("d_none_three");
     init();
-  } else {
-    alert("Wrong answer. Only true Pokémon masters know the color!");
   }
 }
 
@@ -155,7 +169,6 @@ function prevLargeCard(index) {
  */
 function closeLargeCardOnX() {
   const card = document.getElementById("large-card-container");
-
   card.classList.add("d_none");
   card.innerHTML = "";
 }

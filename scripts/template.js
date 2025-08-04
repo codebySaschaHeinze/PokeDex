@@ -198,12 +198,19 @@ function searchGetBackToStartTemplate() {
 function startTemplate() {
   return `
           <div class="start_overlay_content" id="start-overlay-content">
-            <p>Let’s see if you're a true Pokémon fan: What color is Pikachu(the littel yellow mouse)?</p>
+            <p>Let’s see if you're a true Pokémon fan: What color is Pikachu(this littel yellow mouse)?</p>
           </div>
           <div class="start_overlay_colors">
-            <a onclick="checkAnswer('green')">green</a>
-            <a onclick="checkAnswer('blue')">blue</a>
+            <a onclick="showThatAnswerIsWrong()">green</a>
+            <a onclick="showThatAnswerIsWrong()">blue</a>
             <a onclick="checkAnswer('yellow')">yellow</a>
           </div>
         `;
+}
+
+function wrongAnswerTemplate() {
+  return `
+          <p>Wrong answer! Are you sure you've ever seen a Pikachu before?</p>
+          <button onclick="backToStartQuestion()" class="try_again_button" id="try-again-button">Try again!
+          </button>`;
 }
