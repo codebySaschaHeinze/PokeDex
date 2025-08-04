@@ -30,6 +30,7 @@ function showStartQuestion() {
 function showThatAnswerIsWrong() {
   const wrongOverlay = document.getElementById("wrong-answer-container");
   document.getElementById("wrong-answer-container").classList.remove("d_none_three");
+  document.getElementById("start-overlay").classList.add("d_none_three");
   wrongOverlay.innerHTML = wrongAnswerTemplate();
 }
 
@@ -38,6 +39,7 @@ function showThatAnswerIsWrong() {
  */
 function backToStartQuestion() {
   document.getElementById("wrong-answer-container").classList.add("d_none_three");
+  document.getElementById("start-overlay").classList.remove("d_none_three");
 }
 
 /**
