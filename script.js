@@ -49,10 +49,12 @@ function checkAnswer(selectedColor) {
  */
 async function getPokemon(startIndex) {
   hideLoadMoreButton();
-  loadingScreen(startIndex);
+
   const container = document.getElementById("main-content-container");
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const spinnerContainer = document.getElementById("loading-spinner-container");
+  spinnerContainer.innerHTML = loadingTemplate();
   try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     if (startIndex === 0) {
       container.innerHTML = "";
     }
@@ -69,8 +71,11 @@ async function getPokemon(startIndex) {
       showLoadMoreButton();
     }
     container.innerHTML += html;
+    showLoadMoreButton();
   } catch (error) {
     container.innerHTML = errorTemplate();
+  } finally {
+    spinnerContainer.innerHTML = "";
   }
 }
 
@@ -244,17 +249,17 @@ function resetPokemonSearchIfWrongInput() {
 }
 
 /**
- * Hides the "Load More" button.
- */
-function hideLoadMoreButton() {
-  document.getElementById("load-more-button").classList.add("d_none");
-}
-
-/**
  * Shows the "Load More" button.
  */
 function showLoadMoreButton() {
   document.getElementById("load-more-button").classList.remove("d_none");
+}
+
+/**
+ * Hides the "Load More" button.
+ */
+function hideLoadMoreButton() {
+  document.getElementById("load-more-button").classList.add("d_none");
 }
 
 /**
@@ -266,6 +271,7 @@ function playCrySound(index) {
   const pokemon = allPokemon[index];
   const cryUrl = pokemon.cries.latest;
   const audio = new Audio(cryUrl);
+  audio.volume = 0.03;
   audio.play();
 }
 
@@ -286,7 +292,7 @@ function highlightStatsTab() {
 }
 
 /**
- * Attaches event listeners for loading more Pokémon and closing the large card with Escape key.
+ * Attaches event listeners for loading more Pokémon, closing the large card with Escape key and start searching with Enter key.
  */
 function addEventListeners() {
   document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
@@ -294,6 +300,11 @@ function addEventListeners() {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeLargeCardOnX();
+    }
+  });
+  document.getElementById("search-field").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      searchPokemon();
     }
   });
 }
