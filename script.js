@@ -69,7 +69,7 @@ async function getPokemon(startIndex) {
   const spinnerContainer = document.getElementById("loading-spinner-container");
   spinnerContainer.innerHTML = loadingTemplate();
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     if (startIndex === 0) {
       container.innerHTML = "";
     }
@@ -83,7 +83,6 @@ async function getPokemon(startIndex) {
       allPokemon.push(pokemon);
       const index = allPokemon.length - 1;
       html += renderPokemonCard(pokemon, index);
-      showLoadMoreButton();
     }
     container.innerHTML += html;
     showLoadMoreButton();
@@ -227,28 +226,22 @@ function calculateBaseStats(baseStat) {
 function searchPokemon() {
   hideLoadMoreButton();
   closeLargeCardOnX();
-
   const query = document.getElementById("search-field").value.toLowerCase();
   const container = document.getElementById("main-content-container");
-
   if (query.length < 3) {
     container.innerHTML = searchErrorTemplate();
     return;
   }
-
   const searched = allPokemon.filter((p) => p.name.toLowerCase().includes(query));
-
   if (searched.length === 0) {
     container.innerHTML = searchNoPokemonFoundTemplate();
     return;
   }
-
   container.innerHTML = "";
   searched.forEach((p) => {
     const idx = allPokemon.indexOf(p);
     container.innerHTML += renderPokemonCard(p, idx);
   });
-
   container.innerHTML += searchGetBackToStartTemplate();
 }
 
