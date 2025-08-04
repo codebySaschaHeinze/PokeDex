@@ -226,22 +226,28 @@ function calculateBaseStats(baseStat) {
 function searchPokemon() {
   hideLoadMoreButton();
   closeLargeCardOnX();
-  const searchRef = document.getElementById("search-field").value.toLowerCase();
+  const searchField = document.getElementById("search-field");
+  const searchValue = searchField.value.toLowerCase();
   const container = document.getElementById("main-content-container");
-  if (searchRef.length < 3) {
+  if (searchValue.length < 3) {
     container.innerHTML = searchErrorTemplate();
     return;
   }
-  const searched = allPokemon.filter((poke) => p.name.toLowerCase().includes(query));
-  if (searched.length === 0) {
+  const searchedPokemon = [];
+  for (let i = 0; i < allPokemon.length; i++) {
+    if (allPokemon[i].name.toLowerCase().includes(searchValue)) {
+      searchedPokemon.push(allPokemon[i]);
+    }
+  }
+  if (searchedPokemon.length === 0) {
     container.innerHTML = searchNoPokemonFoundTemplate();
     return;
   }
   container.innerHTML = "";
-  searched.forEach((poke) => {
-    const idx = allPokemon.indexOf(poke);
-    container.innerHTML += renderPokemonCard(poke, idx);
-  });
+  for (let i = 0; i < searchedPokemon.length; i++) {
+    const index = allPokemon.indexOf(searchedPokemon[i]);
+    container.innerHTML += renderPokemonCard(searchedPokemon[i], index);
+  }
   container.innerHTML += searchGetBackToStartTemplate();
 }
 
