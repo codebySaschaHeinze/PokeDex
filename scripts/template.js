@@ -89,7 +89,8 @@ function aboutTemplate(pokemon) {
                 <td>Weight</td>
                 <td>${(pokemon.weight / 10).toFixed(1).replace(".", ",")} kg</td>
               </tr>
-            </table>`;
+            </table>
+            `;
 }
 
 function statsTemplate(pokemon) {

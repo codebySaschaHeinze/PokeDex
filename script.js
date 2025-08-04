@@ -33,6 +33,7 @@ function showStartQuestion() {
 function checkAnswer(selectedColor) {
   if (selectedColor === "yellow") {
     document.getElementById("start-overlay").classList.add("d_none_three");
+    document.getElementById("nav-right").classList.remove("d_none_three");
     init();
   } else {
     alert("Wrong answer. Only true Pokémon masters know the color!");
