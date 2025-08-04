@@ -253,6 +253,28 @@ td:first-child {
   transform: scale(1.05);
 }
 
+.wrong_answer_container p {
+  width: 90%;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.wrong_answer_container button {
+  margin: 20px;
+  width: 100px;
+  height: 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.4s;
+  background-color: darkblue;
+  color: aliceblue;
+  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.441);
+}
+
+.wrong_answer_container button:hover {
+  transform: scale(1.05);
+}
+
 .d_none_three {
   display: none;
 }
