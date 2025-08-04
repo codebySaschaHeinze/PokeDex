@@ -193,3 +193,16 @@ function searchGetBackToStartTemplate() {
             <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
           </div>`;
 }
+
+function startTemplate() {
+  return `
+          <div class="start_overlay_content" id="start-overlay-content">
+            <p>Let’s see if you're a true Pokémon fan: What color is Pikachu(the littel yellow mouse)?</p>
+          </div>
+          <div class="start_overlay_colors">
+            <a onclick="checkAnswer('green')">green</a>
+            <a onclick="checkAnswer('blue')">blue</a>
+            <a onclick="checkAnswer('yellow')">yellow</a>
+          </div>
+        `;
+}

@@ -15,6 +15,20 @@ function init() {
   getPokemon(currentStartIndex);
 }
 
+function showStartQuestion() {
+  let overlayRef = document.getElementById("start-overlay");
+  overlayRef.innerHTML = startTemplate();
+}
+
+function checkAnswer(selectetdColor) {
+  if (selectetdColor === "yellow") {
+    document.getElementById("start-overlay").classList.add("d_none_three");
+    init();
+  } else {
+    alert("Wrong answer. Only true Pokémon masters know the color!");
+  }
+}
+
 /**
  * Fetches a batch of Pokémon from the PokéAPI starting at the provided index.
  * Updates the UI to show loading state and renders the fetched Pokémon cards.
