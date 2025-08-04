@@ -190,6 +190,6 @@ function searchNoPokemonFoundTemplate() {
 function searchGetBackToStartTemplate() {
   return `
           <div class="search_error_message">
-            <button onclick="resetPokemonSearchIfWrongInput()">Zurück zum Start</button>
+            <button onclick="resetPokemonSearchIfWrongInput()">Back to Start</button>
           </div>`;
 }
