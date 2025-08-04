@@ -10,6 +10,7 @@ let allPokemon = [];
  * Initializes the application by setting up event listeners, rendering the loading template, and fetching the initial batch of Pokémon.
  */
 function init() {
+  hideLoadMoreButton();
   addEventListeners();
   loadingTemplate();
   getPokemon(currentStartIndex);
@@ -64,8 +65,6 @@ function checkAnswer(selectedColor) {
  * @returns {Promise<void>} A promise that resolves when the fetching and rendering are complete.
  */
 async function getPokemon(startIndex) {
-  hideLoadMoreButton();
-
   const container = document.getElementById("main-content-container");
   const spinnerContainer = document.getElementById("loading-spinner-container");
   spinnerContainer.innerHTML = loadingTemplate();
