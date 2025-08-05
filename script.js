@@ -58,39 +58,65 @@ function checkAnswer(selectedColor) {
 }
 
 /**
- * Fetches a batch of Pokémon from the PokéAPI starting at the provided index.
- * Updates the UI to show loading state and renders the fetched Pokémon cards.
+ * Inserts the loading spinner into the container element.
+ */
+function showLoadingSpinner() {
+  document.getElementById("loading-spinner-container").innerHTML = loadingTemplate();
+}
+
+/**
+ * Removes the loading spinner from the container element.
+ */
+function hideLoadingSpinner() {
+  document.getElementById("loading-spinner-container").innerHTML = "";
+}
+
+/**
+ * Fetches a batch of Pokémon data from the PokéAPI.
  *
- * @param {number} startIndex - The index from which to start fetching Pokémon.
- * @returns {Promise<void>} A promise that resolves when the fetching and rendering are complete.
+ * @param {number} startIndex - The index (0-based) of the first Pokémon to fetch.
+ * @param {number} amount - The number of Pokémon to fetch in this batch.
+ * @returns {Promise<Object[]>} A promise that resolves to an array of Pokémon data objects.
+ */
+async function fetchPokemon(startIndex, amount) {
+  const result = [];
+  for (let i = 0; i < amount; i++) {
+    const url = `https://pokeapi.co/api/v2/pokemon/${startIndex + 1 + i}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    result.push(data);
+  }
+  return result;
+}
+
+/**
+ * Loads and displays a batch of Pokémon cards in the main content container.
+ * Hides the "Load More" button and shows a loading spinner while fetching.
+ * On success, appends the rendered Pokémon cards and re-enables the "Load More" button.
+ * On failure, displays an error template.
+ *
+ * @param {number} startIndex - The index (0-based) from which to start loading Pokémon.
  */
 async function getPokemon(startIndex) {
+  hideLoadMoreButton();
+  showLoadingSpinner();
   const container = document.getElementById("main-content-container");
-  const spinnerContainer = document.getElementById("loading-spinner-container");
-  spinnerContainer.innerHTML = loadingTemplate();
+  if (startIndex === 0) container.innerHTML = "";
   try {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    if (startIndex === 0) {
-      container.innerHTML = "";
-    }
-    const maxPokemon = 40;
+    await new Promise((r) => setTimeout(r, 500));
+    const pokemons = await fetchPokemon(startIndex, 40);
     let html = "";
-    for (let i = 0; i < maxPokemon; i++) {
-      const pokemonId = startIndex + 1 + i;
-      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-      const response = await fetch(url);
-      const pokemon = await response.json();
-      allPokemon.push(pokemon);
+    for (let i = 0; i < pokemons.length; i++) {
+      allPokemon.push(pokemons[i]);
       const index = allPokemon.length - 1;
-      html += renderPokemonCard(pokemon, index);
+      html += renderPokemonCard(pokemons[i], index);
     }
     container.innerHTML += html;
     showLoadMoreButton();
-  } catch (error) {
+  } catch {
     container.innerHTML = errorTemplate();
-  } finally {
-    spinnerContainer.innerHTML = "";
   }
+  hideLoadingSpinner();
 }
 
 /**
