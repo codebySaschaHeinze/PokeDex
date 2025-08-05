@@ -198,7 +198,7 @@ function searchGetBackToStartTemplate() {
 function startTemplate() {
   return `
           <div class="start_overlay_content" id="start-overlay-content">
-            <p>Let’s see if you're a true Pokémon fan: What color is Pikachu(this little yellow mouse)?</p>
+            <p>Let’s see if you're a true Pokémon fan: What color is Pikachu (this little yellow mouse)?</p>
           </div>
           <div class="start_overlay_colors">
             <a onclick="showThatAnswerIsWrong()">green</a>
