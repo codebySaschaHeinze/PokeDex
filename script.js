@@ -220,35 +220,62 @@ function calculateBaseStats(baseStat) {
 }
 
 /**
- * Searches for Pokémon by name based on the input field and updates the display.
- * Displays error messages for invalid input or if no Pokémon match the search.
+ * Filters the global allPokemon array for entries whose names include the given search value.
+ *
+ * @param {string} searchValue - The lowercase string to match against each Pokémon’s name.
+ * @returns {Object[]} An array of Pokémon objects whose names contain the search value.
+ */
+function filterPokemonByName(searchValue) {
+  const result = [];
+  for (let i = 0; i < allPokemon.length; i++) {
+    if (allPokemon[i].name.toLowerCase().includes(searchValue)) {
+      result.push(allPokemon[i]);
+    }
+  }
+  return result;
+}
+
+/**
+ * Renders a list of Pokémon cards into the main content container, then appends
+ * the "Back to Start" template at the end.
+ *
+ * @param {Object[]} pokemonList - Array of Pokémon objects to render.
+ */
+function renderSearchedPokemon(pokemonList) {
+  const container = document.getElementById("main-content-container");
+  container.innerHTML = "";
+  for (let i = 0; i < pokemonList.length; i++) {
+    const index = allPokemon.indexOf(pokemonList[i]);
+    container.innerHTML += renderPokemonCard(pokemonList[i], index);
+  }
+  container.innerHTML += searchGetBackToStartTemplate();
+}
+
+/**
+ * Handles the search action triggered by the user. Hides the "Load More" button,
+ * closes any open detail card, validates the query length, performs the filtering,
+ * and renders the results or error templates as needed.
  */
 function searchPokemon() {
   hideLoadMoreButton();
   closeLargeCardOnX();
   const searchField = document.getElementById("search-field");
   const searchValue = searchField.value.toLowerCase();
+
   const container = document.getElementById("main-content-container");
   if (searchValue.length < 3) {
     container.innerHTML = searchErrorTemplate();
     return;
   }
-  const searchedPokemon = [];
-  for (let i = 0; i < allPokemon.length; i++) {
-    if (allPokemon[i].name.toLowerCase().includes(searchValue)) {
-      searchedPokemon.push(allPokemon[i]);
-    }
-  }
+
+  const searchedPokemon = filterPokemonByName(searchValue);
+
   if (searchedPokemon.length === 0) {
     container.innerHTML = searchNoPokemonFoundTemplate();
     return;
   }
-  container.innerHTML = "";
-  for (let i = 0; i < searchedPokemon.length; i++) {
-    const index = allPokemon.indexOf(searchedPokemon[i]);
-    container.innerHTML += renderPokemonCard(searchedPokemon[i], index);
-  }
-  container.innerHTML += searchGetBackToStartTemplate();
+
+  renderSearchedPokemon(searchedPokemon);
 }
 
 /**
