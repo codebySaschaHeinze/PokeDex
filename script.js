@@ -110,7 +110,7 @@ async function getPokemon(startIndex) {
   }
 
   try {
-    const pokemons = await fetchPokemon(startIndex, 40);
+    const pokemons = await fetchPokemon(startIndex, 151);
     let html = "";
 
     for (let i = 0; i < pokemons.length; i++) {
@@ -145,7 +145,7 @@ function capitalize(text) {
  * @returns {Promise<void>} A promise that resolves when the next batch is fetched.
  */
 async function loadMorePokemon() {
-  currentStartIndex += 40;
+  currentStartIndex += 151;
   await getPokemon(currentStartIndex);
 }
 
