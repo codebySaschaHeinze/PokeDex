@@ -35,9 +35,7 @@ function largeCardTemplate(pokemon, index) {
               <img src="./assets/icons/close.png" alt="Schließen" />
             </button>
             <h6>${capitalize(pokemon.name)}</h6>
-            <div id="large-card-image" class="large_card_image"><img src="${
-              pokemon.sprites.other["official-artwork"].front_default
-            }" alt="">
+            <div id="large-card-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name} artwork">
             </div>
             <div
               class="bottom_part_card"
@@ -54,13 +52,13 @@ function largeCardTemplate(pokemon, index) {
               </div>
               <div class="prev_next_buttons">
                 <button class="prev_button" onclick="prevLargeCard(${index})">
-                  <img src="./assets/icons/prev_arrow.png" alt="Next large Card" />
+                  <img src="./assets/icons/prev_arrow.png" alt="Previous Pokémon" />
                 </button>
                 <button class="sound_button" onclick="playCrySound(${index})">
-                  <img src="./assets/icons/sound.png" alt="Pokemon sound" />
+                  <img src="./assets/icons/sound.png" alt="Play Pokémon cry" />
                 </button>
                 <button class="next_button" onclick="nextLargeCard(${index})">
-                  <img src="./assets/icons/next_arrow.png" alt="Previous large Card" />
+                  <img src="./assets/icons/next_arrow.png" alt="Next Pokémon" />
                 </button>
               </div>
             </div>
@@ -106,9 +104,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(
-                   pokemon.stats[1].base_stat
-                 )}% ;background-color: ${color};">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[1].base_stat)}% ;background-color: ${color};">
                  </div>
                  </div>
                 </td>
@@ -120,9 +116,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(
-                   pokemon.stats[2].base_stat
-                 )}%;background-color: ${color};">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[2].base_stat)}%;background-color: ${color};">
                  </div>
                  </div>
                 </td>
@@ -134,9 +128,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(
-                   pokemon.stats[3].base_stat
-                 )}% ;background-color: ${color};">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[3].base_stat)}% ;background-color: ${color};">
                  </div>
                  </div>
                 </td>
@@ -148,9 +140,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(
-                   pokemon.stats[4].base_stat
-                 )}% ;background-color: ${color};">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[4].base_stat)}% ;background-color: ${color};">
                  </div>
                  </div>
                 </td>
@@ -162,9 +152,7 @@ function statsTemplate(pokemon) {
               <tr>
                 <td colspan="2">
                  <div class="stats_progress_bar_container">
-                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(
-                   pokemon.stats[5].base_stat
-                 )}% ;background-color: ${color};">
+                 <div class="stats_progress_bar" style="width: ${calculateBaseStats(pokemon.stats[5].base_stat)}% ;background-color: ${color};">
                  </div>
                  </div>
                 </td>
