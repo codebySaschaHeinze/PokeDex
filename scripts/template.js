@@ -43,8 +43,8 @@ function largeCardTemplate(pokemon, index) {
               ;
             >
               <div class="tab_header">
-                <p id="about-tab" class="tab_button" onclick="showAbout(${index})">About</p>
-                <p id="stats-tab" class="tab_button" onclick="showStats(${index})">Stats</p>
+                <button id="about-tab" class="tab_button" type="button" onclick="showAbout(${index})">About</button>
+                <button id="stats-tab" class="tab_button" type="button" onclick="showStats(${index})">Stats</button>
               </div>
               <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
                 <div class="about_tab_content" id="about-tab-content"></div>
