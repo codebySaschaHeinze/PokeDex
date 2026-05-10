@@ -130,18 +130,6 @@ function capitalize(text) {
 }
 
 /**
- * Displays the loading template on the main content container if starting from index 0.
- *
- * @param {number} startIndex - The index determining if the loading template should be shown.
- */
-function loadingScreen(startIndex) {
-  if (startIndex === 0) {
-    const container = document.getElementById("main-content-container");
-    container.innerHTML = loadingTemplate();
-  }
-}
-
-/**
  * Loads the next batch of Pokémon by incrementing the start index and fetching again.
  * @returns {Promise<void>} A promise that resolves when the next batch is fetched.
  */

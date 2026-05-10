@@ -1,6 +1,6 @@
 function loadingTemplate() {
   return `
-          <div class="pokeball_loader">
+          <div class="pokeball_loader" role="status" aria-live="polite" aria-label="Loading Pokémon">
             <img src="./assets/icons/pokeball_spin.png" alt="" />
           </div>`;
 }
