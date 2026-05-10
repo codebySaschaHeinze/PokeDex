@@ -186,10 +186,12 @@ function startTemplate() {
           <div class="start_overlay_content" id="start-overlay-content">
             <p>Let’s see if you're a true Pokémon fan: What color is Pikachu (this little yellow mouse)?</p>
           </div>
-          <div class="start_overlay_colors">
-            <a onclick="showThatAnswerIsWrong()">green</a>
-            <a onclick="showThatAnswerIsWrong()">blue</a>
-            <a onclick="checkAnswer('yellow')">yellow</a>
+            <div class="start_overlay_colors">
+              <div class="start_overlay_colors">
+              <button class="green_button" type="button" onclick="showThatAnswerIsWrong()">Green</button>
+              <button class="blue_button" type="button" onclick="showThatAnswerIsWrong()">Blue</button>
+              <button class="yellow_button" type="button" onclick="checkAnswer('yellow')">Yellow</button>
+            </div>
           </div>
         `;
 }
