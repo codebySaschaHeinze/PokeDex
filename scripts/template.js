@@ -67,8 +67,6 @@ function largeCardTemplate(pokemon, index) {
 }
 
 function aboutTemplate(pokemon) {
-  const pokemonType = pokemon.types[0].type.name;
-  const color = typeColors[pokemonType];
   return `  
           <table class="large_card_about_table">
             <tr>
