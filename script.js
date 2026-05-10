@@ -149,7 +149,14 @@ function showLargeCard(index) {
 
   card.classList.remove("d_none");
   card.innerHTML = largeCardTemplate(pokemon, index);
+
   showAbout(index);
+
+  const closeButton = document.getElementById("large-card-close-button");
+
+  if (closeButton) {
+    closeButton.focus();
+  }
 }
 
 /**
@@ -367,4 +374,76 @@ function addEventListeners() {
       resetPokemonSearchIfWrongInput();
     }
   });
+  document.addEventListener("keydown", handleLargeCardKeyboard);
+}
+
+/**
+ * Checks whether the large Pokémon detail card is currently visible.
+ *
+ * @returns {boolean} True if the large card is open, otherwise false.
+ */
+function isLargeCardOpen() {
+  const largeCardContainer = document.getElementById("large-card-container");
+  return largeCardContainer && !largeCardContainer.classList.contains("d_none");
+}
+
+/**
+ * Handles keyboard navigation while the large Pokémon detail card is open.
+ *
+ * Pressing Escape closes the detail card.
+ * Pressing Tab or Shift + Tab keeps the focus inside the detail card.
+ *
+ * @param {KeyboardEvent} event - The keyboard event triggered by the user.
+ */
+function handleLargeCardKeyboard(event) {
+  if (!isLargeCardOpen()) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    closeLargeCardOnX();
+    return;
+  }
+
+  if (event.key !== "Tab") {
+    return;
+  }
+
+  const focusableElements = getFocusableLargeCardElements();
+
+  if (focusableElements.length === 0) {
+    return;
+  }
+
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === firstElement) {
+    event.preventDefault();
+    lastElement.focus();
+    return;
+  }
+
+  if (!event.shiftKey && document.activeElement === lastElement) {
+    event.preventDefault();
+    firstElement.focus();
+  }
+}
+
+/**
+ * Returns all keyboard-focusable elements inside the large Pokémon detail card.
+ *
+ * These elements are used by the focus trap to keep keyboard navigation
+ * inside the open detail card.
+ *
+ * @returns {NodeListOf<HTMLElement>} A list of focusable elements inside the large card.
+ */
+function getFocusableLargeCardElements() {
+  const largeCardContainer = document.getElementById("large-card-container");
+
+  if (!largeCardContainer) {
+    return [];
+  }
+
+  return largeCardContainer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
 }

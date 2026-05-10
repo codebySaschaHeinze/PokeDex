@@ -14,14 +14,20 @@ function renderPokemonCard(pokemon, index) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
   return `
-          <div class="pokemon_card" style="background-color: ${color}" onclick="showLargeCard(${index})">
-              <p>#${pokemon.id}</p>
-              <h5>${capitalize(pokemon.name)}</h5>
-              <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}" />
-              <div class="little_type_container">
-                <p class="pokemon_type" style="background-color: ${color}">${capitalize(pokemon.types[0].type.name)}</p>
-              </div>
-          </div>
+          <button
+            class="pokemon_card" type="button" onclick="showLargeCard(${index})""
+            aria-label="Open details for ${capitalize(pokemon.name)}" style="background-color: ${color};">
+            <p>#${pokemon.id}</p>
+            <h5>${capitalize(pokemon.name)}</h5>
+            <img
+              src="${pokemon.sprites.other["official-artwork"].front_default}"
+              alt="${pokemon.name} artwork"/>
+            <div class="little_type_container">
+              <p class="pokemon_type" style="background-color: ${color}">
+                ${capitalize(pokemon.types[0].type.name)}
+              </p>
+            </div>
+          </button>
         `;
 }
 
@@ -31,10 +37,11 @@ function largeCardTemplate(pokemon, index) {
 
   return `
           <div class="large_card_content">
-            <button class="close_button" onclick="closeLargeCardOnX()">
+            <button id="large-card-close-button" class="close_button" onclick="closeLargeCardOnX()"
+            type="button" aria-label="Close detail card">
               <img src="./assets/icons/close.png" alt="Schließen" />
             </button>
-            <h6>${capitalize(pokemon.name)}</h6>
+            <h2>${capitalize(pokemon.name)}</h2>
             <div id="large-card-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name} artwork">
             </div>
             <div
@@ -51,14 +58,14 @@ function largeCardTemplate(pokemon, index) {
                 <div class="stats_tab_content" id="stats-tab-content"></div>
               </div>
               <div class="prev_next_buttons">
-                <button class="prev_button" onclick="prevLargeCard(${index})">
-                  <img src="./assets/icons/prev_arrow.png" alt="Previous Pokémon" />
+                <button class="prev_button" onclick="prevLargeCard(${index})" aria-label="Previous Pokémon">
+                  <img src="./assets/icons/prev_arrow.png" />
                 </button>
-                <button class="sound_button" onclick="playCrySound(${index})">
-                  <img src="./assets/icons/sound.png" alt="Play Pokémon cry" />
+                <button class="sound_button" onclick="playCrySound(${index})" aria-label="How the Pokémon sounds">
+                  <img src="./assets/icons/sound.png" />
                 </button>
-                <button class="next_button" onclick="nextLargeCard(${index})">
-                  <img src="./assets/icons/next_arrow.png" alt="Next Pokémon" />
+                <button class="next_button" onclick="nextLargeCard(${index})" aria-label="Next Pokémon">
+                  <img src="./assets/icons/next_arrow.png" />
                 </button>
               </div>
             </div>

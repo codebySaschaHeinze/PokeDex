@@ -125,6 +125,20 @@
   padding-bottom: 0px;
 }
 
+.pokemon_card {
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+}
+
+.pokemon_card:focus-visible {
+  outline: 3px solid black;
+  outline-offset: 4px;
+}
+
 .large_card_tabs {
   display: flex;
   justify-content: space-around;
