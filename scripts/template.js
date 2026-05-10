@@ -19,9 +19,8 @@ function renderPokemonCard(pokemon, index) {
             aria-label="Open details for ${capitalize(pokemon.name)}" style="background-color: ${color};">
             <p>#${pokemon.id}</p>
             <h5>${capitalize(pokemon.name)}</h5>
-            <img
-              src="${pokemon.sprites.other["official-artwork"].front_default}"
-              alt="${pokemon.name} artwork"/>
+            <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name} artwork" loading="lazy"
+            />
             <div class="little_type_container">
               <p class="pokemon_type" style="background-color: ${color}">
                 ${capitalize(pokemon.types[0].type.name)}
