@@ -79,13 +79,14 @@ function hideLoadingSpinner() {
  * @returns {Promise<Object[]>} A promise that resolves to an array of Pokémon data objects.
  */
 async function fetchPokemon(startIndex, amount) {
-  const result = [];
+  const requests = [];
+
   for (let i = 0; i < amount; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${startIndex + 1 + i}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    result.push(data);
+    requests.push(fetch(url).then((response) => response.json()));
   }
+
+  const result = await Promise.all(requests);
   return result;
 }
 
