@@ -92,6 +92,7 @@ async function fetchPokemon(startIndex, amount) {
 
 /**
  * Loads and displays a batch of Pokémon cards in the main content container.
+ *
  * Hides the "Load More" button and shows a loading spinner while fetching.
  * On success, appends the rendered Pokémon cards and re-enables the "Load More" button.
  * On failure, displays an error template.
@@ -99,25 +100,34 @@ async function fetchPokemon(startIndex, amount) {
  * @param {number} startIndex - The index (0-based) from which to start loading Pokémon.
  */
 async function getPokemon(startIndex) {
+  const container = document.getElementById("main-content-container");
+
   hideLoadMoreButton();
   showLoadingSpinner();
-  const container = document.getElementById("main-content-container");
-  if (startIndex === 0) container.innerHTML = "";
+
+  if (startIndex === 0) {
+    container.innerHTML = "";
+  }
+
   try {
-    await new Promise((r) => setTimeout(r, 500));
     const pokemons = await fetchPokemon(startIndex, 40);
     let html = "";
+
     for (let i = 0; i < pokemons.length; i++) {
       allPokemon.push(pokemons[i]);
+
       const index = allPokemon.length - 1;
       html += renderPokemonCard(pokemons[i], index);
     }
+
     container.innerHTML += html;
     showLoadMoreButton();
-  } catch {
+  } catch (error) {
+    console.error("Failed to load Pokémon:", error);
     container.innerHTML = errorTemplate();
+  } finally {
+    hideLoadingSpinner();
   }
-  hideLoadingSpinner();
 }
 
 /**
