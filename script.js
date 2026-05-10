@@ -7,6 +7,11 @@ let currentStartIndex = 0;
 let allPokemon = [];
 
 /**
+ * Variable holding wich tab (about or stats) in detail card is open.
+ */
+let activeLargeCardTab = "about";
+
+/**
  * Initializes the application by setting up event listeners, rendering the loading template, and fetching the initial batch of Pokémon.
  */
 function init() {
@@ -161,7 +166,11 @@ function showLargeCard(index) {
   card.classList.remove("d_none");
   card.innerHTML = largeCardTemplate(pokemon, index);
 
-  showAbout(index);
+  if (activeLargeCardTab === "stats") {
+    showStats(index);
+  } else {
+    showAbout(index);
+  }
 
   const closeButton = document.getElementById("large-card-close-button");
 
@@ -211,6 +220,7 @@ function closeLargeCardOnX() {
  * @param {number} index - The index of the Pokémon in the allPokemon array.
  */
 function showAbout(index) {
+  activeLargeCardTab = "about";
   const pokemon = allPokemon[index];
   const aboutTab = document.getElementById("about-tab-content");
   const statsTab = document.getElementById("stats-tab-content");
@@ -228,6 +238,7 @@ function showAbout(index) {
  * @param {number} index - The index of the Pokémon in the allPokemon array.
  */
 function showStats(index) {
+  activeLargeCardTab = "stats";
   const pokemon = allPokemon[index];
   const aboutTab = document.getElementById("about-tab-content");
   const statsTab = document.getElementById("stats-tab-content");
