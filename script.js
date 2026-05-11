@@ -11,6 +11,9 @@ let allPokemon = [];
  */
 let activeLargeCardTab = "about";
 
+let isCompareModeActive = false;
+let selectedPokemonForCompare = [];
+
 /**
  * Initializes the application by setting up event listeners, rendering the loading template, and fetching the initial batch of Pokémon.
  */
@@ -219,15 +222,16 @@ function closeLargeCardOnX() {
  *
  * @param {number} index - The index of the Pokémon in the allPokemon array.
  */
-function showAbout(index) {
+function showAbout(index, idPrefix = "large-card") {
   activeLargeCardTab = "about";
+
   const pokemon = allPokemon[index];
-  const aboutTab = document.getElementById("about-tab-content");
-  const statsTab = document.getElementById("stats-tab-content");
+  const aboutTab = document.getElementById(`${idPrefix}-about-tab-content`);
+  const statsTab = document.getElementById(`${idPrefix}-stats-tab-content`);
 
   aboutTab.classList.remove("d_none_two");
   statsTab.classList.add("d_none_two");
-  highlightAboutTab();
+  highlightAboutTab(idPrefix);
 
   aboutTab.innerHTML = aboutTemplate(pokemon);
 }
@@ -237,15 +241,16 @@ function showAbout(index) {
  *
  * @param {number} index - The index of the Pokémon in the allPokemon array.
  */
-function showStats(index) {
+function showStats(index, idPrefix = "large-card") {
   activeLargeCardTab = "stats";
+
   const pokemon = allPokemon[index];
-  const aboutTab = document.getElementById("about-tab-content");
-  const statsTab = document.getElementById("stats-tab-content");
+  const aboutTab = document.getElementById(`${idPrefix}-about-tab-content`);
+  const statsTab = document.getElementById(`${idPrefix}-stats-tab-content`);
 
   aboutTab.classList.add("d_none_two");
   statsTab.classList.remove("d_none_two");
-  highlightStatsTab();
+  highlightStatsTab(idPrefix);
 
   statsTab.innerHTML = statsTemplate(pokemon);
 }
@@ -361,17 +366,17 @@ function playCrySound(index) {
 /**
  * Highlights the "About" tab button.
  */
-function highlightAboutTab() {
-  document.getElementById("about-tab").className = "tab_button active_tab";
-  document.getElementById("stats-tab").className = "tab_button";
+function highlightAboutTab(idPrefix = "large-card") {
+  document.getElementById(`${idPrefix}-about-tab`).className = "tab_button active_tab";
+  document.getElementById(`${idPrefix}-stats-tab`).className = "tab_button";
 }
 
 /**
  * Highlights the "Stats" tab button.
  */
-function highlightStatsTab() {
-  document.getElementById("stats-tab").classList.add("active_tab");
-  document.getElementById("about-tab").classList.remove("active_tab");
+function highlightStatsTab(idPrefix = "large-card") {
+  document.getElementById(`${idPrefix}-stats-tab`).classList.add("active_tab");
+  document.getElementById(`${idPrefix}-about-tab`).classList.remove("active_tab");
 }
 
 /**
@@ -397,6 +402,7 @@ function addEventListeners() {
     }
   });
   document.addEventListener("keydown", handleLargeCardKeyboard);
+  document.getElementById("main-content-container").addEventListener("click", cancelCompareModeOnMainContentClick);
 }
 
 /**
@@ -468,4 +474,118 @@ function getFocusableLargeCardElements() {
   }
 
   return largeCardContainer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+}
+
+/**
+ * Handles clicks on Pokémon cards.
+ *
+ * Opens the normal detail card unless compare mode is active.
+ *
+ * @param {number} index - The index of the clicked Pokémon in the allPokemon array.
+ */
+function handlePokemonCardClick(index) {
+  if (isCompareModeActive) {
+    selectPokemonForCompare(index);
+    return;
+  }
+
+  showLargeCard(index);
+}
+
+/**
+ * Starts the Pokémon compare mode and asks the user to select two Pokémon.
+ */
+function startCompareMode() {
+  isCompareModeActive = true;
+  selectedPokemonForCompare = [];
+
+  const message = document.getElementById("compare-message");
+  message.textContent = "Please select two Pokémon to compare.";
+}
+
+/**
+ * Adds a Pokémon to the current compare selection.
+ *
+ * Once two different Pokémon are selected, the compare overlay can be opened.
+ *
+ * @param {number} index - The index of the selected Pokémon in the allPokemon array.
+ */
+function selectPokemonForCompare(index) {
+  if (selectedPokemonForCompare.includes(index)) {
+    return;
+  }
+
+  selectedPokemonForCompare.push(index);
+
+  const message = document.getElementById("compare-message");
+  message.textContent = `${selectedPokemonForCompare.length} of 2 Pokémon selected.`;
+
+  if (selectedPokemonForCompare.length === 2) {
+    isCompareModeActive = false;
+    message.textContent = "";
+    showCompareOverlay();
+  }
+}
+
+/**
+ * Opens the compare overlay for the two selected Pokémon.
+ */
+function showCompareOverlay() {
+  const compareOverlayContainer = document.getElementById("compare-overlay-container");
+  const firstPokemon = allPokemon[selectedPokemonForCompare[0]];
+  const secondPokemon = allPokemon[selectedPokemonForCompare[1]];
+
+  compareOverlayContainer.innerHTML = compareOverlayTemplate(firstPokemon, secondPokemon);
+  compareOverlayContainer.classList.remove("d_none");
+  showStats(selectedPokemonForCompare[0], "compare-first");
+  showStats(selectedPokemonForCompare[1], "compare-second");
+
+  const closeButton = document.getElementById("compare-close-button");
+
+  if (closeButton) {
+    closeButton.focus();
+  }
+}
+
+/**
+ * Closes the compare overlay and resets the selected Pokémon.
+ */
+function closeCompareOverlay() {
+  const compareOverlayContainer = document.getElementById("compare-overlay-container");
+
+  compareOverlayContainer.classList.add("d_none");
+  compareOverlayContainer.innerHTML = "";
+  selectedPokemonForCompare = [];
+}
+
+/**
+ * Cancels the compare mode when the user clicks outside a Pokémon card.
+ *
+ * @param {MouseEvent} event - The click event inside the main content container.
+ */
+function cancelCompareModeOnMainContentClick(event) {
+  if (!isCompareModeActive) {
+    return;
+  }
+
+  if (event.target.closest(".pokemon_card")) {
+    return;
+  }
+
+  isCompareModeActive = false;
+  selectedPokemonForCompare = [];
+
+  const message = document.getElementById("compare-message");
+  message.textContent = "";
+}
+
+/**
+ * Closes the compare overlay when the user clicks on the overlay background.
+ *
+ * @param {MouseEvent} event - The click event inside the compare overlay.
+ */
+function closeCompareOverlayOnBackgroundClick(event) {
+  if (event.target.classList.contains("compare_overlay")) {
+    closeCompareOverlay();
+  }
 }

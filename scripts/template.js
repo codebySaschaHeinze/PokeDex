@@ -15,7 +15,7 @@ function renderPokemonCard(pokemon, index) {
   const color = typeColors[pokemonType];
   return `
           <button
-            class="pokemon_card" type="button" onclick="showLargeCard(${index})""
+            class="pokemon_card" type="button" onclick="handlePokemonCardClick(${index})"
             aria-label="Open details for ${capitalize(pokemon.name)}" style="background-color: ${color};">
             <p>#${pokemon.id}</p>
             <h5>${capitalize(pokemon.name)}</h5>
@@ -30,18 +30,25 @@ function renderPokemonCard(pokemon, index) {
         `;
 }
 
-function largeCardTemplate(pokemon, index) {
+function largeCardTemplate(pokemon, index, idPrefix = "large-card", showControls = true) {
   const pokemonType = pokemon.types[0].type.name;
   const color = typeColors[pokemonType];
 
   return `
           <div class="large_card_content">
-            <button id="large-card-close-button" class="close_button" onclick="closeLargeCardOnX()"
-            type="button" aria-label="Close detail card">
-              <img src="./assets/icons/close.png" alt="Schließen" />
-            </button>
+            ${
+              showControls
+                ? `
+                    <button
+                      id="${idPrefix}-close-button" class="close_button" onclick="closeLargeCardOnX()"
+                      type="button" aria-label="Close detail card">
+                      <img src="./assets/icons/close.png" alt="" />
+                    </button>
+                  `
+                : ""
+            }
             <h2>${capitalize(pokemon.name)}</h2>
-            <div id="large-card-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name} artwork">
+            <div id="${idPrefix}-image" class="large_card_image"><img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name} artwork">
             </div>
             <div
               class="bottom_part_card"
@@ -49,24 +56,30 @@ function largeCardTemplate(pokemon, index) {
               ;
             >
               <div class="tab_header">
-                <button id="about-tab" class="tab_button" type="button" onclick="showAbout(${index})">About</button>
-                <button id="stats-tab" class="tab_button" type="button" onclick="showStats(${index})">Stats</button>
+                <button id="${idPrefix}-about-tab" class="tab_button" type="button" onclick="showAbout(${index}, '${idPrefix}')">About</button>
+                <button id="${idPrefix}-stats-tab" class="tab_button" type="button" onclick="showStats(${index}, '${idPrefix}')">Stats</button>
               </div>
               <div class="large_card_tabs" style="box-shadow: 0 0 20px 1px ${color};">
-                <div class="about_tab_content" id="about-tab-content"></div>
-                <div class="stats_tab_content" id="stats-tab-content"></div>
+                <div class="about_tab_content" id="${idPrefix}-about-tab-content"></div>
+                <div class="stats_tab_content" id="${idPrefix}-stats-tab-content"></div>
               </div>
-              <div class="prev_next_buttons">
-                <button class="prev_button" onclick="prevLargeCard(${index})" aria-label="Previous Pokémon">
-                  <img src="./assets/icons/prev_arrow.png" />
-                </button>
-                <button class="sound_button" onclick="playCrySound(${index})" aria-label="How the Pokémon sounds">
-                  <img src="./assets/icons/sound.png" />
-                </button>
-                <button class="next_button" onclick="nextLargeCard(${index})" aria-label="Next Pokémon">
-                  <img src="./assets/icons/next_arrow.png" />
-                </button>
-              </div>
+              ${
+                showControls
+                  ? `
+                      <div class="prev_next_buttons">
+                        <button class="prev_button" type="button" onclick="prevLargeCard(${index})" aria-label="Previous Pokémon">
+                          <img src="./assets/icons/prev_arrow.png" alt="" />
+                        </button>
+                        <button class="sound_button" type="button" onclick="playCrySound(${index})" aria-label="How the Pokémon sounds">
+                          <img src="./assets/icons/sound.png" alt="" />
+                        </button>
+                        <button class="next_button" type="button" onclick="nextLargeCard(${index})" aria-label="Next Pokémon">
+                          <img src="./assets/icons/next_arrow.png" alt="" />
+                        </button>
+                      </div>
+                    `
+                  : ""
+              }
             </div>
           </div>
           `;
@@ -207,4 +220,69 @@ function wrongAnswerTemplate() {
           <p>Wrong answer! Are you sure you've ever seen a Pikachu before?</p>
           <button onclick="backToStartQuestion()" class="try_again_button" id="try-again-button">Try again!
           </button>`;
+}
+
+/**
+ * Returns the HTML template for the Pokémon compare overlay.
+ *
+ * @param {Object} firstPokemon - The first selected Pokémon.
+ * @param {Object} secondPokemon - The second selected Pokémon.
+ * @returns {string} The compare overlay HTML.
+ */
+function compareOverlayTemplate(firstPokemon, secondPokemon) {
+  return `
+    <div class="compare_overlay">
+      <div class="compare_content">
+        <button
+          id="compare-close-button"
+          class="compare_close_button"
+          type="button"
+          onclick="closeCompareOverlay()"
+          aria-label="Close compare overlay"
+        >
+          <img src="./assets/icons/close.png" alt="" />
+        </button>
+
+        <h2>Compare Pokémon</h2>
+
+        <div class="compare_cards">
+          ${largeCardTemplate(firstPokemon, selectedPokemonForCompare[0], "compare-first", false)}
+          ${largeCardTemplate(secondPokemon, selectedPokemonForCompare[1], "compare-second", false)}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Returns the HTML template for one Pokémon inside the compare overlay.
+ *
+ * @param {Object} pokemon - The Pokémon data object.
+ * @returns {string} The compare card HTML.
+ */
+function comparePokemonCardTemplate(pokemon) {
+  const pokemonType = pokemon.types[0].type.name;
+  const color = typeColors[pokemonType];
+
+  return `
+    <article class="compare_detail_card">
+      <h3>${capitalize(pokemon.name)}</h3>
+
+      <div class="large_card_image">
+        <img
+          src="${pokemon.sprites.other["official-artwork"].front_default}"
+          alt="${pokemon.name} artwork"
+        />
+      </div>
+
+      <div
+        class="bottom_part_card"
+        style="background: linear-gradient(to top, ${color}, rgba(255, 255, 255, 1)); box-shadow: 0 -10px 20px -10px ${color};"
+      >
+        <div class="large_card_tabs compare_stats_box">
+          ${statsTemplate(pokemon)}
+        </div>
+      </div>
+    </article>
+  `;
 }
