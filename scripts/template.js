@@ -222,13 +222,6 @@ function wrongAnswerTemplate() {
           </button>`;
 }
 
-/**
- * Returns the HTML template for the Pokémon compare overlay.
- *
- * @param {Object} firstPokemon - The first selected Pokémon.
- * @param {Object} secondPokemon - The second selected Pokémon.
- * @returns {string} The compare overlay HTML.
- */
 function compareOverlayTemplate(firstPokemon, secondPokemon) {
   return `
     <div class="compare_overlay">

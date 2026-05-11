@@ -26,7 +26,7 @@
 }
 
 .main_content_container {
-  margin-top: 122px;
+  margin-top: 132px;
   margin-bottom: 60px;
   max-width: 1920px;
   display: flex;
@@ -396,10 +396,13 @@
   border-radius: 8px;
   font: inherit;
   font-weight: 500;
-  padding: 5px;
   color: rgb(255, 255, 255);
-  background-color: rgba(2, 2, 249, 0.539);
+  background: linear-gradient(to bottom right, rgba(0, 23, 199, 0.508), rgba(82, 98, 212, 0.508), rgba(0, 23, 199, 0.508));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.compare_message:not(:empty) {
+  padding: 5px;
 }
 
 .compare_overlay_container {
@@ -491,4 +494,8 @@
     top: 14px;
     right: 28px;
   }
+}
+
+.d_none_three {
+  display: none !important;
 }
