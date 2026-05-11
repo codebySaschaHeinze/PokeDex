@@ -26,7 +26,7 @@
 }
 
 .main_content_container {
-  margin-top: 116px;
+  margin-top: 122px;
   margin-bottom: 60px;
   max-width: 1920px;
   display: flex;
@@ -54,6 +54,7 @@
 
 .pokemon_card:hover {
   transform: scale(1.05);
+  background: linear-gradient(125deg, rgba(236, 236, 236, 0), rgba(236, 236, 236, 0), rgba(255, 255, 255, 0.15), rgba(236, 236, 236, 0), rgba(236, 236, 236, 0));
 }
 
 .pokeball_loader {
@@ -377,7 +378,7 @@
   font-weight: 500;
   cursor: pointer;
   color: rgb(255, 255, 255);
-  background-color: rgba(2, 2, 249, 0.539);
+  background: linear-gradient(to bottom right, rgba(0, 23, 199, 0.508), rgba(82, 98, 212, 0.508), rgba(0, 23, 199, 0.508));
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -395,7 +396,7 @@
   border-radius: 8px;
   font: inherit;
   font-weight: 500;
-  cursor: pointer;
+  padding: 5px;
   color: rgb(255, 255, 255);
   background-color: rgba(2, 2, 249, 0.539);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);

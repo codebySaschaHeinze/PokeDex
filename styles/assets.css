@@ -40,7 +40,7 @@ footer a:hover {
 }
 
 .nav_right button:hover {
-  background-color: rgb(2, 2, 223);
+  background: linear-gradient(to bottom right, rgba(0, 23, 199, 0.508), rgba(82, 98, 212, 0.508), rgba(0, 23, 199, 0.508));
 }
 
 .impressum_data_protection_container h2 {
