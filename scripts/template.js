@@ -235,9 +235,6 @@ function compareOverlayTemplate(firstPokemon, secondPokemon) {
         >
           <img src="./assets/icons/close.png" alt="" />
         </button>
-
-        <h2>Compare Pokémon</h2>
-
         <div class="compare_cards">
           ${largeCardTemplate(firstPokemon, selectedPokemonForCompare[0], "compare-first", false)}
           ${largeCardTemplate(secondPokemon, selectedPokemonForCompare[1], "compare-second", false)}
