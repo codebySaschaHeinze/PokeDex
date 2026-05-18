@@ -14,14 +14,36 @@ let activeLargeCardTab = "about";
 let isCompareModeActive = false;
 let selectedPokemonForCompare = [];
 
-/**
- * Initializes the application by setting up event listeners, rendering the loading template, and fetching the initial batch of Pokémon.
- */
+const generations = {
+  1: { label: "Kanto", startId: 1, endId: 151 },
+  2: { label: "Johto", startId: 152, endId: 251 },
+  3: { label: "Hoenn", startId: 252, endId: 386 },
+  4: { label: "Sinnoh", startId: 387, endId: 493 },
+  5: { label: "Unova", startId: 494, endId: 649 },
+  6: { label: "Kalos", startId: 650, endId: 721 },
+  7: { label: "Alola", startId: 722, endId: 809 },
+  8: { label: "Galar", startId: 810, endId: 905 },
+  9: { label: "Paldea", startId: 906, endId: 1025 },
+};
+
+const generationCache = {};
+let activeGeneration = 1;
+
+// /**
+//  * Initializes the application by setting up event listeners, rendering the loading template, and fetching the initial batch of Pokémon.
+//  */
+// function init() {
+//   hideLoadMoreButton();
+//   addEventListeners();
+//   loadingTemplate();
+//   getPokemon(currentStartIndex);
+//   loadPokemonByGeneration(1);
+// }
+
 function init() {
   hideLoadMoreButton();
   addEventListeners();
-  loadingTemplate();
-  getPokemon(currentStartIndex);
+  loadPokemonByGeneration(1);
 }
 
 /**
@@ -332,23 +354,29 @@ function searchPokemon() {
  */
 function resetPokemonSearchIfWrongInput() {
   document.getElementById("search-field").value = "";
-  currentStartIndex = 0;
-  allPokemon = [];
-  getPokemon(currentStartIndex);
+  loadPokemonByGeneration(activeGeneration);
 }
 
 /**
- * Shows the "Load More" button.
+ * Shows the "Load More" button if it exists.
  */
 function showLoadMoreButton() {
-  document.getElementById("load-more-button").classList.remove("d_none");
+  const loadMoreButton = document.getElementById("load-more-button");
+
+  if (loadMoreButton) {
+    loadMoreButton.classList.remove("d_none");
+  }
 }
 
 /**
- * Hides the "Load More" button.
+ * Hides the "Load More" button if it exists.
  */
 function hideLoadMoreButton() {
-  document.getElementById("load-more-button").classList.add("d_none");
+  const loadMoreButton = document.getElementById("load-more-button");
+
+  if (loadMoreButton) {
+    loadMoreButton.classList.add("d_none");
+  }
 }
 
 /**
@@ -384,7 +412,11 @@ function highlightStatsTab(idPrefix = "large-card") {
  * Attaches event listeners for loading more Pokémon, closing the large card with Escape key and start searching with Enter key.
  */
 function addEventListeners() {
-  document.getElementById("load-more-button").addEventListener("click", loadMorePokemon);
+  const loadMoreButton = document.getElementById("load-more-button");
+
+  if (loadMoreButton) {
+    loadMoreButton.addEventListener("click", loadMorePokemon);
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
@@ -588,5 +620,118 @@ function cancelCompareModeOnMainContentClick(event) {
 function closeCompareOverlayOnBackgroundClick(event) {
   if (event.target.classList.contains("compare_overlay")) {
     closeCompareOverlay();
+  }
+}
+
+/**
+ * Opens the generation selection overlay.
+ */
+function openGenerationOverlay() {
+  const container = document.getElementById("generation-overlay-container");
+
+  container.innerHTML = generationOverlayTemplate();
+  container.classList.remove("d_none");
+}
+
+/**
+ * Closes the generation selection overlay and removes its content from the DOM.
+ */
+function closeGenerationOverlay() {
+  const container = document.getElementById("generation-overlay-container");
+
+  container.classList.add("d_none");
+  container.innerHTML = "";
+}
+
+/**
+ * Closes the generation overlay when the user clicks on the overlay background.
+ *
+ * @param {MouseEvent} event - The click event inside the generation overlay.
+ */
+function closeGenerationOverlayOnBackgroundClick(event) {
+  if (event.target.classList.contains("generation_overlay")) {
+    closeGenerationOverlay();
+  }
+}
+
+/**
+ * Selects a Pokémon generation, closes the overlay and loads the selected generation.
+ *
+ * @param {number} generation - The selected generation number.
+ * @returns {Promise<void>} A promise that resolves when the generation has been loaded.
+ */
+async function selectGeneration(generation) {
+  closeGenerationOverlay();
+  await loadPokemonByGeneration(generation);
+}
+
+/**
+ * Calculates how many Pokémon belong to a generation.
+ *
+ * @param {number} generation - The generation number.
+ * @returns {number} The amount of Pokémon in the selected generation.
+ */
+function getGenerationAmount(generation) {
+  const generationData = generations[generation];
+  return generationData.endId - generationData.startId + 1;
+}
+
+/**
+ * Renders a list of Pokémon cards and stores it as the currently active Pokémon list.
+ *
+ * @param {Object[]} pokemonList - The Pokémon data objects to render.
+ */
+function renderPokemonList(pokemonList) {
+  const container = document.getElementById("main-content-container");
+  let html = "";
+
+  container.innerHTML = "";
+  allPokemon = pokemonList;
+
+  for (let i = 0; i < pokemonList.length; i++) {
+    html += renderPokemonCard(pokemonList[i], i);
+  }
+
+  container.innerHTML = html;
+}
+
+/**
+ * Loads and renders all Pokémon of a selected generation.
+ *
+ * If the generation was loaded before, the cached data is rendered.
+ * Otherwise the Pokémon are fetched from the PokéAPI, cached and then rendered.
+ *
+ * @param {number} generation - The generation number to load.
+ * @returns {Promise<void>} A promise that resolves when the generation has been loaded.
+ */
+async function loadPokemonByGeneration(generation) {
+  const generationData = generations[generation];
+
+  if (!generationData) {
+    return;
+  }
+
+  activeGeneration = generation;
+  hideLoadMoreButton();
+  showLoadingSpinner();
+  closeLargeCardOnX();
+
+  try {
+    if (generationCache[generation]) {
+      renderPokemonList(generationCache[generation]);
+      return;
+    }
+
+    const startIndex = generationData.startId - 1;
+    const amount = getGenerationAmount(generation);
+    const pokemons = await fetchPokemon(startIndex, amount);
+
+    generationCache[generation] = pokemons;
+    renderPokemonList(pokemons);
+  } catch (error) {
+    console.error("Failed to load generation:", error);
+    document.getElementById("main-content-container").innerHTML = errorTemplate();
+  } finally {
+    hideLoadingSpinner();
   }
 }

@@ -276,3 +276,44 @@ function comparePokemonCardTemplate(pokemon) {
     </article>
   `;
 }
+
+function generationOverlayTemplate() {
+  return `
+    <div class="generation_overlay" onclick="closeGenerationOverlayOnBackgroundClick(event)">
+      <div class="generation_overlay_content">
+        <button
+          class="generation_overlay_close_button"
+          type="button"
+          onclick="closeGenerationOverlay()"
+          aria-label="Close generation selection"
+        >
+          <img src="./assets/icons/close.png" alt="" />
+        </button>
+
+        <h2>Choose Generation</h2>
+
+        <div class="generation_list">
+          ${generationButtonsTemplate()}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function generationButtonsTemplate() {
+  let html = "";
+
+  for (const generation in generations) {
+    html += `
+      <button
+        class="generation_select_button"
+        type="button"
+        onclick="selectGeneration(${generation})"
+      >
+        ${generations[generation].label}
+      </button>
+    `;
+  }
+
+  return html;
+}
